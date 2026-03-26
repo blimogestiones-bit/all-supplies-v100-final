@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { AnimatedSection } from "@/components/animated-section"
 import { Button } from "@/components/ui/button"
@@ -129,11 +129,11 @@ const productsData = [
   }
 ]
 
-export default function ProductosPage() {
+// ESTA FUNCIÓN CONTIENE TODO TU DISEÑO ORIGINAL
+function ProductosContent() {
   const searchParams = useSearchParams()
   const [selectedProduct, setSelectedProduct] = useState(productsData[0])
 
-  // Set selected product based on URL parameter
   useEffect(() => {
     const productoParam = searchParams.get("producto")
     if (productoParam) {
@@ -146,7 +146,6 @@ export default function ProductosPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Navbar for catalog page - links back to home */}
       <header className="bg-white text-brand-blue-dark py-4 sticky top-0 z-50 shadow-lg border-b border-gray-200">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center">
@@ -185,7 +184,6 @@ export default function ProductosPage() {
         </div>
       </header>
 
-      {/* Hero Section */}
       <section className="relative py-12 overflow-hidden flex items-center">
         <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-dark via-blue-900 to-slate-900" />
         <div className="absolute top-10 left-20 w-32 h-32 bg-brand-green/15 rounded-full blur-3xl animate-pulse"></div>
@@ -202,12 +200,9 @@ export default function ProductosPage() {
         </div>
       </section>
 
-      {/* Catalog with Sidebar */}
       <section className="py-8">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-6">
-
-            {/* Left Sidebar - Product List */}
             <div className="lg:w-1/4">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden sticky top-28">
                 <div className="bg-brand-blue-dark text-white p-4">
@@ -232,13 +227,9 @@ export default function ProductosPage() {
               </div>
             </div>
 
-            {/* Right Panel - Product Detail */}
             <div className="lg:w-3/4">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-
-                {/* Product Header with Image and Title side by side */}
                 <div className="flex flex-col md:flex-row">
-                  {/* Product Image - smaller and contained */}
                   <div className="md:w-2/5 p-6">
                     <div className="relative aspect-square bg-slate-100 rounded-lg overflow-hidden">
                       <img
@@ -253,7 +244,6 @@ export default function ProductosPage() {
                     </div>
                   </div>
 
-                  {/* Title and Description */}
                   <div className="md:w-3/5 p-6 flex flex-col justify-center">
                     <h2 className="text-2xl md:text-3xl font-bold text-brand-blue-dark mb-4">
                       {selectedProduct.name}
@@ -269,10 +259,7 @@ export default function ProductosPage() {
                   </div>
                 </div>
 
-                {/* Features and Video Section */}
                 <div className="p-6 pt-0 border-t border-slate-100">
-
-                  {/* Features - Clearly separated */}
                   <div className="mb-6">
                     <h3 className="text-xs font-bold text-brand-green uppercase tracking-widest mb-4 pt-6">
                       Caracteristicas Tecnicas
@@ -290,7 +277,6 @@ export default function ProductosPage() {
                     </div>
                   </div>
 
-                  {/* Video section - only for variador */}
                   {selectedProduct.video && (
                     <div className="mb-6">
                       <h3 className="text-xs font-bold text-brand-green uppercase tracking-widest mb-4">
@@ -309,7 +295,6 @@ export default function ProductosPage() {
                     </div>
                   )}
 
-                  {/* CTA */}
                   <div className="pt-4 border-t border-slate-200">
                     <Link href="/#contacto">
                       <Button className="px-6 py-3 bg-brand-green text-white hover:bg-brand-green-dark hover:shadow-lg transform hover:scale-105 transition-all duration-300 border-0 font-semibold">
@@ -320,10 +305,18 @@ export default function ProductosPage() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
     </div>
+  )
+}
+
+// ESTO ES LO QUE ARREGLA EL ERROR DE VERCEL
+export default function ProductosPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Cargando catálogo...</div>}>
+      <ProductosContent />
+    </Suspense>
   )
 }
