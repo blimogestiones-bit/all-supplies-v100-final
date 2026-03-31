@@ -13,6 +13,8 @@ const allies = [
   { name: "TradeXAuto", category: "Comercio Internacional", logo: "/allies/tradexauto.png" },
   { name: "J&R Oleo Suministros Industriales", category: "Suministros Industriales", logo: "/allies/jr-oleo.png" },
   { name: "Globex Re", category: "Reaseguradoras", logo: "/allies/globex-re.png" },
+  { name: "Optimum Capital", category: "Inversiones", logo: "/allies/optimum-capital.jpg" },
+  { name: "Inversiones Sumizara", category: "Inversiones", logo: "/allies/inversiones-sumizara.jpg" },
 ]
 
 // Duplicate for seamless infinite loop
