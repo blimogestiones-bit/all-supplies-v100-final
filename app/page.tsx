@@ -391,7 +391,10 @@ export default function AllSuppliesWebsite() {
               { name: "Siemens", category: "Automatizacion Industrial", logo: "/allies/siemens.jpg" },
               { name: "Danfoss", category: "Sistemas de Control", logo: "/allies/danfoss.jpg" },
               { name: "ABB", category: "Equipos Electricos", logo: "/allies/abb.jpg" },
-              { name: "Schneider Electric", category: "Energia y Automatizacion", logo: "/allies/schneider.jpg" }
+              { name: "Schneider Electric", category: "Energia y Automatizacion", logo: "/allies/schneider.jpg" },
+              { name: "Amvac Valves", category: "Valvulas Industriales", logo: "/allies/amvac-valves.jpg" },
+              { name: "Dobicka Inc", category: "Equipos Industriales", logo: "/allies/dobicka-inc.jpg" },
+              { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" }
             ].map((ally, idx) => (
               <AnimatedSection
                 key={idx}
