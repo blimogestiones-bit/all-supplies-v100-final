@@ -270,17 +270,18 @@ export default function AllSuppliesWebsite() {
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 justify-center items-stretch max-w-4xl mx-auto">
             {servicesData.map((service, index) => (
               <AnimatedSection
                 key={index}
-                animation={index === 0 ? "slide-left" : index === 1 ? "fade-up" : "slide-right"}
+                animation={index === 0 ? "slide-left" : "slide-right"}
                 delay={100 + index * 100}
                 disableOnMobile={false}
                 triggerOnce={false}
+                className="flex-1 max-w-md"
               >
-                <div className="group">
-                  <TouchOptimizedCard borderColor={service.borderColor}>
+                <div className="group h-full">
+                  <TouchOptimizedCard borderColor={service.borderColor} className="h-full">
                     <CardHeader className="text-center pb-4">
                       <div
                         className={`mx-auto mb-4 p-4 ${service.color} rounded-full w-fit shadow-lg group-hover:scale-110 transition-transform duration-300`}

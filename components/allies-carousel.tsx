@@ -63,8 +63,6 @@ export function AlliesCarousel() {
     <div
       className="relative overflow-hidden py-10"
       style={{ perspective: "1200px" }}
-      onMouseEnter={() => { pausedRef.current = true }}
-      onMouseLeave={() => { pausedRef.current = false }}
     >
       {/* Fade edges */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10"
