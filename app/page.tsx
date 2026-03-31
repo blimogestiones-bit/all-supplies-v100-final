@@ -325,54 +325,6 @@ export default function AllSuppliesWebsite() {
         <MetricsSection />
       </section>
 
-      {/* Certifications Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up" delay={50}>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Certificaciones Internacionales</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
-              <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Cumplimiento riguroso de estándares internacionales de calidad, seguridad y sostenibilidad
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "ISO 9001",
-                description: "Gestion de Calidad"
-              },
-              {
-                title: "ISO 14001",
-                description: "Gestion Ambiental"
-              },
-              {
-                title: "OHSAS 18001",
-                description: "Seguridad y Salud Ocupacional"
-              },
-              {
-                title: "ISO 27001",
-                description: "Seguridad de Informacion"
-              }
-            ].map((cert, idx) => (
-              <AnimatedSection
-                key={idx}
-                animation="fade-up"
-                delay={100 + idx * 50}
-                triggerOnce={false}
-              >
-                <div className="border-2 border-brand-green bg-white rounded-lg p-8 text-center hover:shadow-lg hover:border-brand-green-dark transition-all duration-300">
-                  <h3 className="font-bold text-2xl text-brand-blue-dark mb-3">{cert.title}</h3>
-                  <p className="text-text-secondary">{cert.description}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Strategic Allies Section */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
@@ -386,15 +338,18 @@ export default function AllSuppliesWebsite() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { name: "Siemens", category: "Automatizacion Industrial", logo: "/allies/siemens.jpg" },
-              { name: "Danfoss", category: "Sistemas de Control", logo: "/allies/danfoss.jpg" },
-              { name: "ABB", category: "Equipos Electricos", logo: "/allies/abb.jpg" },
-              { name: "Schneider Electric", category: "Energia y Automatizacion", logo: "/allies/schneider.jpg" },
               { name: "Amvac Valves", category: "Valvulas Industriales", logo: "/allies/amvac-valves.jpg" },
               { name: "Dobicka Inc", category: "Equipos Industriales", logo: "/allies/dobicka-inc.jpg" },
-              { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" }
+              { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" },
+              { name: "IEC", category: "Soluciones Energeticas", logo: "/allies/iec.png" },
+              { name: "SEI Electric LLC", category: "Servicios Electricos", logo: "/allies/sei-electric.jpg" },
+              { name: "Banesco", category: "Servicios Financieros", logo: "/allies/banesco.png" },
+              { name: "MStar Technologie", category: "Tecnologia Industrial", logo: "/allies/mstar-technologie.png" },
+              { name: "TradeXAuto", category: "Comercio Internacional", logo: "/allies/tradexauto.png" },
+              { name: "J&R Oleo Suministros Industriales", category: "Suministros Industriales", logo: "/allies/jr-oleo.png" },
+              { name: "Globex Re", category: "Soluciones Quimicas", logo: "/allies/globex-re.png" }
             ].map((ally, idx) => (
               <AnimatedSection
                 key={idx}
