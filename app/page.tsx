@@ -5,6 +5,7 @@ import { AnimatedSection } from "@/components/animated-section"
 import { TouchOptimizedCard } from "@/components/touch-optimized-card"
 import { ProductCarousel } from "@/components/product-carousel"
 import { ContactForm } from "@/components/contact-form"
+import { AlliesCarousel } from "@/components/allies-carousel"
 import { MetricsSection } from "@/components/metrics-section"
 import { SmoothScrollNav } from "@/components/smooth-scroll-nav"
 import { Button } from "@/components/ui/button"
@@ -29,11 +30,6 @@ const SettingsIcon = () => (
   </svg>
 )
 
-const CreditCardIcon = () => (
-  <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
-  </svg>
-)
 
 const MailIcon = () => (
   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -154,15 +150,6 @@ export default function AllSuppliesWebsite() {
       borderColor: "border-t-brand-blue-dark",
       href: "/servicios/procura-internacional",
       buttonColor: "bg-brand-blue-dark hover:bg-brand-blue",
-    },
-    {
-      title: "Servicios Financieros Internacionales",
-      description: "Soluciones financieras especializadas para mercados",
-      icon: <CreditCardIcon />,
-      color: "bg-brand-green-dark",
-      borderColor: "border-t-brand-green-dark",
-      href: "/servicios/servicios-financieros",
-      buttonColor: "bg-brand-green-dark hover:bg-brand-green",
     },
   ]
 
@@ -338,45 +325,7 @@ export default function AllSuppliesWebsite() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { name: "Amvac Valves", category: "Valvulas Industriales", logo: "/allies/amvac-valves.jpg" },
-              { name: "Dobicka Inc", category: "Equipos Industriales", logo: "/allies/dobicka-inc.jpg" },
-              { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" },
-              { name: "IEC", category: "Soluciones Energeticas", logo: "/allies/iec.png" },
-              { name: "SEI Electric LLC", category: "Servicios Electricos", logo: "/allies/sei-electric.jpg" },
-              { name: "Banesco", category: "Servicios Financieros", logo: "/allies/banesco.png" },
-              { name: "MStar Technologie", category: "Tecnologia Industrial", logo: "/allies/mstar-technologie.png" },
-              { name: "TradeXAuto", category: "Comercio Internacional", logo: "/allies/tradexauto.png" },
-              { name: "J&R Oleo Suministros Industriales", category: "Suministros Industriales", logo: "/allies/jr-oleo.png" },
-              { name: "Globex Re", category: "Soluciones Quimicas", logo: "/allies/globex-re.png" }
-            ].map((ally, idx) => (
-              <AnimatedSection
-                key={idx}
-                animation="scale-up"
-                delay={100 + idx * 75}
-                triggerOnce={false}
-              >
-                <div className="bg-white border-2 border-slate-200 rounded-lg p-6 text-center hover:border-brand-green hover:shadow-lg hover:scale-105 transition-all duration-300">
-                  <div className="h-24 flex items-center justify-center mb-4">
-                    <img
-                      src={ally.logo}
-                      alt={ally.name}
-                      className="max-h-full max-w-full object-contain"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none"
-                        if (e.currentTarget.parentElement) {
-                          e.currentTarget.parentElement.innerHTML = `<span class="text-3xl font-bold text-brand-blue-dark">${ally.name}</span>`
-                        }
-                      }}
-                    />
-                  </div>
-                  <h3 className="font-bold text-lg text-brand-blue-dark mb-1">{ally.name}</h3>
-                  <p className="text-text-secondary text-sm">{ally.category}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AlliesCarousel />
         </div>
       </section>
 
