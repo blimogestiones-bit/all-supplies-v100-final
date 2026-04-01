@@ -204,7 +204,7 @@ export default function AllSuppliesWebsite() {
 
             <AnimatedSection animation="fade-up" delay={200}>
               <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed drop-shadow-lg font-light max-w-4xl mx-auto">
-                Empresa multinacional especializada en brindar soluciones estratégicas integrales a través de tres divisiones clave: <span className="font-semibold">Energía, tecnología y seguridad</span>, <span className="font-semibold">Servicios de Procura</span> y <span className="font-semibold">Gestión Financiera Internacional</span>.
+                Empresa multinacional especializada en brindar soluciones estratégicas integrales a través de dos divisiones clave: <span className="font-semibold">Energía, tecnología y seguridad</span> y <span className="font-semibold">Servicios de Procura</span>.
               </p>
             </AnimatedSection>
 
