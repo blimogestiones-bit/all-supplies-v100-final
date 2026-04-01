@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface CarouselProduct {
@@ -21,7 +21,6 @@ interface ProductCarouselProps {
   }
 }
 
-// Sub-component: image slideshow within a single product card
 function ProductImageSlideshow({ images, name }: { images: string[]; name: string }) {
   const [activeImg, setActiveImg] = useState(0)
 
@@ -51,8 +50,8 @@ function ProductImageSlideshow({ images, name }: { images: string[]; name: strin
           {images.map((_, i) => (
             <span
               key={i}
-              className={`block w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                i === activeImg ? "bg-white w-3" : "bg-white/50"
+              className={`block h-1.5 rounded-full transition-all duration-300 ${
+                i === activeImg ? "bg-white w-3" : "bg-white/50 w-1.5"
               }`}
             />
           ))}
@@ -64,77 +63,120 @@ function ProductImageSlideshow({ images, name }: { images: string[]; name: strin
 
 export function ProductCarousel({
   products,
-  itemsPerView = {
-    mobile: 1,
-    tablet: 2,
-    desktop: 4,
-  },
+  itemsPerView = { mobile: 1, tablet: 2, desktop: 4 },
 }: ProductCarouselProps) {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlay, setIsAutoPlay] = useState(true)
-  const [screenSize, setScreenSize] = useState("desktop")
+  const [itemsToShow, setItemsToShow] = useState(4)
+  const trackRef = useRef<HTMLDivElement>(null)
+  // index into the real product list (0-based). We render clones around the list.
+  const indexRef = useRef(0)
+  // whether transition is enabled (disabled during the instant clone-jump)
+  const [transition, setTransition] = useState(true)
+  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setScreenSize("mobile")
-      } else if (window.innerWidth < 1024) {
-        setScreenSize("tablet")
-      } else {
-        setScreenSize("desktop")
-      }
+      if (window.innerWidth < 768) setItemsToShow(itemsPerView.mobile)
+      else if (window.innerWidth < 1024) setItemsToShow(itemsPerView.tablet)
+      else setItemsToShow(itemsPerView.desktop)
     }
     handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
-  }, [])
+  }, [itemsPerView.mobile, itemsPerView.tablet, itemsPerView.desktop])
 
-  const itemsToShow =
-    screenSize === "mobile"
-      ? itemsPerView.mobile
-      : screenSize === "tablet"
-        ? itemsPerView.tablet
-        : itemsPerView.desktop
+  // We prepend `itemsToShow` clones at the start and append `itemsToShow` at the end
+  // so there is always content to slide into from either direction.
+  const cloneCount = itemsToShow
+  const allItems = [
+    ...products.slice(-cloneCount),
+    ...products,
+    ...products.slice(0, cloneCount),
+  ]
+  const totalSlots = allItems.length
 
-  const maxIndex = Math.max(0, products.length - itemsToShow)
+  // The visual index in allItems that corresponds to real index 0 is `cloneCount`.
+  const toVisual = (real: number) => real + cloneCount
 
+  const applyTranslate = useCallback(
+    (visualIdx: number, animated: boolean) => {
+      if (!trackRef.current) return
+      trackRef.current.style.transition = animated
+        ? "transform 500ms ease-in-out"
+        : "none"
+      trackRef.current.style.transform = `translateX(-${(visualIdx * 100) / itemsToShow}%)`
+    },
+    [itemsToShow]
+  )
+
+  // Set initial position (no animation) whenever itemsToShow changes
   useEffect(() => {
-    if (!isAutoPlay) return
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev === maxIndex ? 0 : prev + 1))
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [isAutoPlay, maxIndex])
+    applyTranslate(toVisual(indexRef.current), false)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemsToShow])
+
+  const advance = useCallback(
+    (dir: 1 | -1) => {
+      const next = indexRef.current + dir
+      indexRef.current = next
+      applyTranslate(toVisual(next), true)
+    },
+    [applyTranslate, toVisual]
+  )
+
+  // After each animated transition, if we've slid into a clone region,
+  // instantly jump to the real counterpart.
+  const handleTransitionEnd = useCallback(() => {
+    const real = indexRef.current
+    if (real < 0) {
+      indexRef.current = products.length - 1
+      applyTranslate(toVisual(products.length - 1), false)
+    } else if (real >= products.length) {
+      indexRef.current = 0
+      applyTranslate(toVisual(0), false)
+    }
+  }, [applyTranslate, products.length, toVisual])
+
+  // Autoplay
+  useEffect(() => {
+    autoRef.current = setInterval(() => advance(1), 5000)
+    return () => { if (autoRef.current) clearInterval(autoRef.current) }
+  }, [advance])
 
   const handlePrev = () => {
-    setIsAutoPlay(false)
-    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1))
+    if (autoRef.current) clearInterval(autoRef.current)
+    autoRef.current = setInterval(() => advance(1), 5000)
+    advance(-1)
   }
 
   const handleNext = () => {
-    setIsAutoPlay(false)
-    setCurrentIndex((prev) => (prev === maxIndex ? 0 : prev + 1))
+    if (autoRef.current) clearInterval(autoRef.current)
+    autoRef.current = setInterval(() => advance(1), 5000)
+    advance(1)
   }
+
+  const itemWidth = `${100 / itemsToShow}%`
 
   return (
     <div className="w-full">
       <div className="relative overflow-hidden">
         <div
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
+          ref={trackRef}
+          className="flex will-change-transform"
+          style={{ width: `${(totalSlots / itemsToShow) * 100}%` }}
+          onTransitionEnd={handleTransitionEnd}
         >
-          {products.map((product) => {
-            const images = product.images && product.images.length > 0
-              ? product.images
-              : [product.image]
+          {allItems.map((product, idx) => {
+            const images =
+              product.images && product.images.length > 0
+                ? product.images
+                : [product.image]
             return (
               <div
-                key={product.id}
-                className="flex-shrink-0"
-                style={{ width: `${100 / itemsToShow}%` }}
+                key={`${product.id}-${idx}`}
+                style={{ width: itemWidth, flexShrink: 0 }}
               >
                 <div className="p-2 md:p-4">
-                  <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col">
+                  <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
                     <ProductImageSlideshow images={images} name={product.name} />
                     <div className="p-4 flex flex-col flex-grow">
                       <h3 className="font-bold text-lg text-slate-900 mb-2">{product.name}</h3>
@@ -160,7 +202,6 @@ export function ProductCarousel({
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
-
         <button
           onClick={handleNext}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-brand-green hover:bg-brand-green-dark text-white p-2 rounded-l-lg transition-all duration-300 shadow-lg"
@@ -168,22 +209,6 @@ export function ProductCarousel({
         >
           <ChevronRight className="w-6 h-6" />
         </button>
-      </div>
-
-      <div className="flex justify-center gap-2 mt-6">
-        {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setIsAutoPlay(false)
-              setCurrentIndex(index)
-            }}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-brand-green w-8" : "bg-slate-300 hover:bg-slate-400"
-            }`}
-            aria-label={`Go to product group ${index + 1}`}
-          />
-        ))}
       </div>
     </div>
   )

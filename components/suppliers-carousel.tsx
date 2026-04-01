@@ -7,7 +7,7 @@ const suppliers = [
   { name: "TCS", category: "Tecnologia y Servicios", logo: "/suppliers/tcs.png", larger: true },
   { name: "Tamma Group", category: "Grupo Empresarial", logo: "/suppliers/tamma-group.png" },
   { name: "TeleMedicina24", category: "Servicios de Salud", logo: "/suppliers/telemedicina24.png", larger: true },
-  { name: "Globex Re", category: "Aseguradora", logo: "/allies/globex-re.png" },
+  { name: "Globex Re", category: "Reaseguradora", logo: "/allies/globex-re.png" },
   { name: "Inversiones Sumizara", category: "Tecnologia", logo: "/allies/inversiones-sumizara.jpg" },
   { name: "TradeXAuto", category: "Comercio Internacional", logo: "/allies/tradexauto.png" },
 ]
