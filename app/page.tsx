@@ -93,7 +93,8 @@ export default function AllSuppliesWebsite() {
       id: "tornilleria",
       name: "Tornilleria Industrial",
       description: "Componentes de fijacion certificados ASTM. Multiples grados de aleacion disponibles.",
-      image: "/products/tornilleria.jpg",
+      image: "/products/tornilleria-esparrago.jpg",
+      images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
       href: "/productos",
     },
     {
