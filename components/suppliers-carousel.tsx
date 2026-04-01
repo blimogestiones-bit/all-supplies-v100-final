@@ -101,8 +101,8 @@ export function SuppliersCarousel() {
                   transition: "transform 0.1s ease",
                 }}
               >
-                <div className="bg-white border-2 border-slate-200 rounded-xl p-6 text-center hover:border-brand-blue hover:shadow-xl transition-all duration-300 h-full">
-                  <div className={`${supplier.larger ? "h-28" : "h-20"} flex items-center justify-center mb-4`}>
+                <div className="bg-white border-2 border-slate-200 rounded-xl p-6 text-center hover:border-brand-blue hover:shadow-xl transition-all duration-300 flex flex-col" style={{ height: "200px" }}>
+                  <div className="h-28 flex items-center justify-center mb-3 shrink-0">
                     <img
                       src={supplier.logo}
                       alt={supplier.name}
@@ -115,8 +115,10 @@ export function SuppliersCarousel() {
                       }}
                     />
                   </div>
-                  <h3 className="font-bold text-lg text-brand-blue-dark mb-1">{supplier.name}</h3>
-                  <p className="text-text-secondary text-sm">{supplier.category}</p>
+                  <div className="mt-auto">
+                    <h3 className="font-bold text-base text-brand-blue-dark leading-tight mb-0.5">{supplier.name}</h3>
+                    <p className="text-text-secondary text-sm">{supplier.category}</p>
+                  </div>
                 </div>
               </div>
             )

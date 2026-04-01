@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const allies = [
@@ -30,16 +30,11 @@ export function AlliesCarousel() {
   const trackRef = useRef<HTMLDivElement>(null)
   const offsetRef = useRef(0)
   const rafRef = useRef<number | null>(null)
-  const [activeIdx, setActiveIdx] = useState(Math.floor(allies.length / 2))
 
   const updateTransform = () => {
     if (trackRef.current) {
       trackRef.current.style.transform = `translateX(-${offsetRef.current}px)`
     }
-    // Determine center card
-    const center = offsetRef.current + (typeof window !== "undefined" ? window.innerWidth / 2 : 700)
-    const idx = Math.round(center / STEP) % allies.length
-    setActiveIdx((idx + allies.length) % allies.length)
   }
 
   const handlePrev = () => {
@@ -113,55 +108,30 @@ export function AlliesCarousel() {
           willChange: "transform",
         }}
       >
-        {alliesLoop.map((ally, i) => {
-          const loopIdx = i % allies.length
-          const isActive = loopIdx === activeIdx && Math.floor(i / allies.length) === 1
-
-          return (
-            <div
-              key={i}
-              style={{
-                width: `${CARD_WIDTH}px`,
-                flexShrink: 0,
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                transform: isActive
-                  ? "translateZ(40px) scale(1.08)"
-                  : "translateZ(0px) scale(1)",
-                transformStyle: "preserve-3d",
-              }}
-            >
-              <div
-                className={`
-                  h-44 bg-white rounded-2xl flex flex-col items-center justify-center p-5 select-none
-                  ${isActive
-                    ? "border-2 border-brand-green shadow-2xl"
-                    : "border border-slate-200 shadow-md"}
-                `}
-                style={{
-                  boxShadow: isActive
-                    ? "0 20px 60px -10px rgba(0,0,0,0.22), 0 0 0 2px var(--color-brand-green)"
-                    : "0 4px 18px -4px rgba(0,0,0,0.10)",
-                }}
-              >
-                <div className={`w-full flex items-center justify-center mb-3 ${ally.larger ? "h-28" : "h-20"}`}>
-                  <img
-                    src={ally.logo}
-                    alt={ally.name}
-                    className={`max-w-full object-contain ${ally.larger ? "max-h-28" : "max-h-full"}`}
-                    draggable={false}
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none"
-                      if (e.currentTarget.parentElement) {
-                        e.currentTarget.parentElement.innerHTML = `<span class="text-lg font-bold text-brand-blue-dark text-center leading-tight">${ally.name}</span>`
-                      }
-                    }}
-                  />
-                </div>
-                <p className="text-xs font-medium text-text-secondary text-center leading-snug">{ally.category}</p>
+        {alliesLoop.map((ally, i) => (
+          <div
+            key={i}
+            style={{ width: `${CARD_WIDTH}px`, flexShrink: 0 }}
+          >
+            <div className="h-44 bg-white rounded-2xl border border-slate-200 shadow-md hover:border-2 hover:border-brand-green hover:shadow-xl flex flex-col items-center justify-center p-5 select-none transition-all duration-300 group">
+              <div className="w-full flex items-center justify-center mb-3 h-24">
+                <img
+                  src={ally.logo}
+                  alt={ally.name}
+                  className="max-w-full max-h-full object-contain"
+                  draggable={false}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none"
+                    if (e.currentTarget.parentElement) {
+                      e.currentTarget.parentElement.innerHTML = `<span class="text-lg font-bold text-brand-blue-dark text-center leading-tight">${ally.name}</span>`
+                    }
+                  }}
+                />
               </div>
+              <p className="text-xs font-medium text-text-secondary text-center leading-snug">{ally.category}</p>
             </div>
-          )
-        })}
+          </div>
+        ))}
       </div>
     </div>
   )
