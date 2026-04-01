@@ -85,7 +85,7 @@ export default function AllSuppliesWebsite() {
     {
       id: "taladros",
       name: "Taladros de Perforacion",
-      description: "Equipos de perforacion profesionales desde 700HP hasta 3000HP. Suministro desde USA.",
+      description: "Equipos de perforacion profesionales desde 750HP hasta 3000HP. Suministro desde USA.",
       image: "/products/taladros.jpg",
       href: "/productos",
     },
@@ -177,7 +177,7 @@ export default function AllSuppliesWebsite() {
       <section id="inicio" className="relative py-20 overflow-hidden min-h-[90vh] flex items-center">
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-dark via-blue-900 to-slate-900" />
-        
+
         {/* Animated floating circles - Background decorative elements */}
         <div className="absolute top-20 left-20 w-40 h-40 bg-brand-green/15 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-32 right-16 w-56 h-56 bg-brand-blue-light/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -414,14 +414,14 @@ export default function AllSuppliesWebsite() {
                           <br />
                           Piso 19, Ciudad de Panamá - Panamá
                         </p>
-                        <a 
+                        <a
                           href="https://maps.google.com/?q=Ave.+Aquilino+de+la+Guardia+y+Calle+47,+Ocean+Business+Plaza,+Panama+City"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-block mt-3 text-brand-green-dark hover:text-brand-green font-semibold text-sm flex items-center space-x-1 hover:underline"
                         >
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                           </svg>
                           <span>Ver en Google Maps</span>
                         </a>
