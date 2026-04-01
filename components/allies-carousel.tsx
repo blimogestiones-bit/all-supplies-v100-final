@@ -7,7 +7,7 @@ const allies = [
   { name: "Amvac Valves", category: "Valvulas Industriales", logo: "/allies/amvac-valves.jpg" },
   { name: "Dobicka Inc", category: "Equipos Industriales", logo: "/allies/dobicka-inc.jpg", larger: true },
   { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" },
-  { name: "InverCapital Casa de Bolsa", category: "Casa de Bolsa", logo: "/allies/invercapital.png" },
+  { name: "InverCapital Casa de Bolsa", category: "Casa de Bolsa", logo: "/allies/invercapital.png", larger: true },
   { name: "SEI Electric LLC", category: "Servicios Electricos", logo: "/allies/sei-electric.jpg" },
   { name: "Banesco", category: "Servicios Financieros", logo: "/allies/banesco.png" },
   { name: "MStar Technologie", category: "Tecnologia Industrial", logo: "/allies/mstar-technologie.png" },
@@ -16,7 +16,7 @@ const allies = [
   { name: "Globex Re", category: "Aseguradora", logo: "/allies/globex-re.png" },
   { name: "Optimum Capital", category: "Financiero", logo: "/allies/optimum-capital.jpg" },
   { name: "Inversiones Sumizara", category: "Tecnologia", logo: "/allies/inversiones-sumizara.jpg" },
-  { name: "Inveraqua", category: "Inversiones", logo: "/allies/inveraqua.png" },
+  { name: "Inveraqua", category: "Inversiones", logo: "/allies/inveraqua.png", larger: true },
 ]
 
 // Duplicate for seamless infinite loop
