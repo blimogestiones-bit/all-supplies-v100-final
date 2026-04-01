@@ -28,11 +28,9 @@ const productsData = [
     image: "/products/taladros.jpg",
     description: "Equipos de perforacion profesionales con capacidades desde 700HP hasta 3000HP. Suministrados directamente desde USA con especificaciones tecnicas completas. Disenados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
     features: [
-      "Capacidad: 700HP a 3000HP",
-      "Sistemas de bombeo avanzado",
+      "Capacidad: 750HP",
       "Tecnologia de ultima generacion",
       "Suministro desde USA",
-      "Garantia internacional",
       "Soporte tecnico especializado"
     ],
     video: null,
