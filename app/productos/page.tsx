@@ -26,13 +26,11 @@ const productsData = [
     id: "taladros",
     name: "Taladros de Perforacion",
     image: "/products/taladros.jpg",
-    description: "Equipos de perforacion profesionales con capacidades desde 700HP hasta 3000HP. Suministrados directamente desde USA con especificaciones tecnicas completas. Disenados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
+    description: "Equipos de perforacion profesionales con capacidades desde 750HP hasta 3000HP. Suministrados directamente desde USA con especificaciones tecnicas completas. Disenados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
     features: [
-      "Capacidad: 700HP a 3000HP",
-      "Sistemas de bombeo avanzado",
+      "Capacidad: 750HP a 3000HP",
       "Tecnologia de ultima generacion",
       "Suministro desde USA",
-      "Garantia internacional",
       "Soporte tecnico especializado"
     ],
     video: null,
@@ -40,10 +38,12 @@ const productsData = [
   {
     id: "tornilleria",
     name: "Tornilleria Industrial",
-    image: "/products/tornilleria.jpg",
+    image: "/products/tornilleria-esparrago.jpg",
+    images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
     description: "Componentes de fijacion certificados ASTM para la industria. Tornilleria de precision con multiples grados de aleacion. Especialmente disenada para ambientes corrosivos y altas temperaturas en aplicaciones industriales criticas.",
     features: [
       "Certificacion ASTM A193, A320, A353",
+      "Barras Roscadas",
       "Esparragos para altas temperaturas",
       "Multiples grados de aleacion disponibles",
       "Fabricacion especial personalizada",
@@ -214,11 +214,10 @@ function ProductosContent() {
                       key={product.id}
                       type="button"
                       onClick={() => setSelectedProduct(product)}
-                      className={`w-full text-left px-5 py-4 transition-all duration-200 font-medium text-sm ${
-                        selectedProduct.id === product.id
-                          ? "bg-brand-green text-white"
-                          : "bg-white text-text-primary hover:bg-slate-50 hover:text-brand-green"
-                      }`}
+                      className={`w-full text-left px-5 py-4 transition-all duration-200 font-medium text-sm ${selectedProduct.id === product.id
+                        ? "bg-brand-green text-white"
+                        : "bg-white text-text-primary hover:bg-slate-50 hover:text-brand-green"
+                        }`}
                     >
                       {product.name}
                     </button>
@@ -231,17 +230,30 @@ function ProductosContent() {
               <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                 <div className="flex flex-col md:flex-row">
                   <div className="md:w-2/5 p-6">
-                    <div className="relative aspect-square bg-slate-100 rounded-lg overflow-hidden">
-                      <img
-                        key={selectedProduct.id}
-                        src={selectedProduct.image}
-                        alt={selectedProduct.name}
-                        className="w-full h-full object-contain p-4"
-                        onError={(e) => {
-                          e.currentTarget.style.display = "none"
-                        }}
-                      />
-                    </div>
+                    {selectedProduct.images && selectedProduct.images.length > 1 ? (
+                      <div className="flex flex-col gap-3">
+                        {selectedProduct.images.map((src, i) => (
+                          <div key={i} className="relative w-full bg-slate-100 rounded-lg overflow-hidden" style={{ aspectRatio: "4/3" }}>
+                            <img
+                              src={src}
+                              alt={`${selectedProduct.name} ${i + 1}`}
+                              className="w-full h-full object-cover"
+                              onError={(e) => { e.currentTarget.style.display = "none" }}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="relative aspect-square bg-slate-100 rounded-lg overflow-hidden">
+                        <img
+                          key={selectedProduct.id}
+                          src={selectedProduct.image}
+                          alt={selectedProduct.name}
+                          className="w-full h-full object-contain p-4"
+                          onError={(e) => { e.currentTarget.style.display = "none" }}
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <div className="md:w-3/5 p-6 flex flex-col justify-center">

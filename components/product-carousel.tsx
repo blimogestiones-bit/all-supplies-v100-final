@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface CarouselProduct {
@@ -8,6 +8,7 @@ interface CarouselProduct {
   name: string
   description: string
   image: string
+  images?: string[]
   href: string
 }
 
@@ -18,6 +19,47 @@ interface ProductCarouselProps {
     tablet: number
     desktop: number
   }
+}
+
+// Sub-component: image slideshow within a single product card
+function ProductImageSlideshow({ images, name }: { images: string[]; name: string }) {
+  const [activeImg, setActiveImg] = useState(0)
+
+  useEffect(() => {
+    if (images.length <= 1) return
+    const t = setInterval(() => {
+      setActiveImg((prev) => (prev + 1) % images.length)
+    }, 4000)
+    return () => clearInterval(t)
+  }, [images.length])
+
+  return (
+    <div className="relative w-full h-48 md:h-56 bg-slate-100 overflow-hidden">
+      {images.map((src, i) => (
+        <img
+          key={src}
+          src={src}
+          alt={`${name} ${i + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+            i === activeImg ? "opacity-100" : "opacity-0"
+          }`}
+          onError={(e) => { e.currentTarget.style.display = "none" }}
+        />
+      ))}
+      {images.length > 1 && (
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+          {images.map((_, i) => (
+            <span
+              key={i}
+              className={`block w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                i === activeImg ? "bg-white w-3" : "bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export function ProductCarousel({
@@ -42,7 +84,6 @@ export function ProductCarousel({
         setScreenSize("desktop")
       }
     }
-
     handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
@@ -59,11 +100,9 @@ export function ProductCarousel({
 
   useEffect(() => {
     if (!isAutoPlay) return
-
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev === maxIndex ? 0 : prev + 1))
     }, 5000)
-
     return () => clearInterval(interval)
   }, [isAutoPlay, maxIndex])
 
@@ -80,46 +119,40 @@ export function ProductCarousel({
   return (
     <div className="w-full">
       <div className="relative overflow-hidden">
-        <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}>
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="flex-shrink-0"
-              style={{ width: `${100 / itemsToShow}%` }}
-            >
-              <div className="p-2 md:p-4">
-                <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col">
-                  <div className="relative w-full h-48 md:h-56 bg-slate-100">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none"
-                        if (e.currentTarget.parentElement) {
-                          e.currentTarget.parentElement.innerHTML =
-                            '<div class="flex items-center justify-center h-full bg-slate-200"><svg class="w-12 h-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>'
-                        }
-                      }}
-                    />
-                  </div>
-                  <div className="p-4 flex flex-col flex-grow">
-                    <h3 className="font-bold text-lg text-slate-900 mb-2">{product.name}</h3>
-                    <p className="text-sm text-slate-600 mb-4 flex-grow">{product.description}</p>
-                    <a
-                      href={`/productos?producto=${product.id}`}
-                      className="inline-block px-4 py-2 bg-brand-green text-white rounded font-semibold hover:bg-brand-green-dark transition-colors duration-300 text-center"
-                    >
-                      Ver Catalogo
-                    </a>
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * (100 / itemsToShow)}%)` }}
+        >
+          {products.map((product) => {
+            const images = product.images && product.images.length > 0
+              ? product.images
+              : [product.image]
+            return (
+              <div
+                key={product.id}
+                className="flex-shrink-0"
+                style={{ width: `${100 / itemsToShow}%` }}
+              >
+                <div className="p-2 md:p-4">
+                  <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col">
+                    <ProductImageSlideshow images={images} name={product.name} />
+                    <div className="p-4 flex flex-col flex-grow">
+                      <h3 className="font-bold text-lg text-slate-900 mb-2">{product.name}</h3>
+                      <p className="text-sm text-slate-600 mb-4 flex-grow">{product.description}</p>
+                      <a
+                        href={`/productos?producto=${product.id}`}
+                        className="inline-block px-4 py-2 bg-brand-green text-white rounded font-semibold hover:bg-brand-green-dark transition-colors duration-300 text-center"
+                      >
+                        Ver Catalogo
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
-        {/* Navigation Buttons */}
         <button
           onClick={handlePrev}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-brand-green hover:bg-brand-green-dark text-white p-2 rounded-r-lg transition-all duration-300 shadow-lg"
@@ -137,7 +170,6 @@ export function ProductCarousel({
         </button>
       </div>
 
-      {/* Dot Indicators */}
       <div className="flex justify-center gap-2 mt-6">
         {Array.from({ length: maxIndex + 1 }).map((_, index) => (
           <button
@@ -146,7 +178,9 @@ export function ProductCarousel({
               setIsAutoPlay(false)
               setCurrentIndex(index)
             }}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-brand-green w-8" : "bg-slate-300 hover:bg-slate-400"}`}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "bg-brand-green w-8" : "bg-slate-300 hover:bg-slate-400"
+            }`}
             aria-label={`Go to product group ${index + 1}`}
           />
         ))}

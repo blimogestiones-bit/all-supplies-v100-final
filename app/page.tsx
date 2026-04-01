@@ -5,6 +5,8 @@ import { AnimatedSection } from "@/components/animated-section"
 import { TouchOptimizedCard } from "@/components/touch-optimized-card"
 import { ProductCarousel } from "@/components/product-carousel"
 import { ContactForm } from "@/components/contact-form"
+import { AlliesCarousel } from "@/components/allies-carousel"
+import { SuppliersCarousel } from "@/components/suppliers-carousel"
 import { MetricsSection } from "@/components/metrics-section"
 import { SmoothScrollNav } from "@/components/smooth-scroll-nav"
 import { Button } from "@/components/ui/button"
@@ -29,11 +31,6 @@ const SettingsIcon = () => (
   </svg>
 )
 
-const CreditCardIcon = () => (
-  <svg className="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-    <path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
-  </svg>
-)
 
 const MailIcon = () => (
   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -88,7 +85,7 @@ export default function AllSuppliesWebsite() {
     {
       id: "taladros",
       name: "Taladros de Perforacion",
-      description: "Equipos de perforacion profesionales desde 700HP hasta 3000HP. Suministro desde USA.",
+      description: "Equipos de perforacion profesionales desde 750HP hasta 3000HP. Suministro desde USA.",
       image: "/products/taladros.jpg",
       href: "/productos",
     },
@@ -96,7 +93,8 @@ export default function AllSuppliesWebsite() {
       id: "tornilleria",
       name: "Tornilleria Industrial",
       description: "Componentes de fijacion certificados ASTM. Multiples grados de aleacion disponibles.",
-      image: "/products/tornilleria.jpg",
+      image: "/products/tornilleria-esparrago.jpg",
+      images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
       href: "/productos",
     },
     {
@@ -155,15 +153,6 @@ export default function AllSuppliesWebsite() {
       href: "/servicios/procura-internacional",
       buttonColor: "bg-brand-blue-dark hover:bg-brand-blue",
     },
-    {
-      title: "Servicios Financieros Internacionales",
-      description: "Soluciones financieras especializadas para mercados",
-      icon: <CreditCardIcon />,
-      color: "bg-brand-green-dark",
-      borderColor: "border-t-brand-green-dark",
-      href: "/servicios/servicios-financieros",
-      buttonColor: "bg-brand-green-dark hover:bg-brand-green",
-    },
   ]
 
   const scrollToSection = (sectionId: string) => {
@@ -189,7 +178,7 @@ export default function AllSuppliesWebsite() {
       <section id="inicio" className="relative py-20 overflow-hidden min-h-[90vh] flex items-center">
         {/* Animated background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-dark via-blue-900 to-slate-900" />
-        
+
         {/* Animated floating circles - Background decorative elements */}
         <div className="absolute top-20 left-20 w-40 h-40 bg-brand-green/15 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-32 right-16 w-56 h-56 bg-brand-blue-light/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -283,17 +272,18 @@ export default function AllSuppliesWebsite() {
             </div>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="flex flex-col lg:flex-row gap-8 justify-center items-stretch">
             {servicesData.map((service, index) => (
               <AnimatedSection
                 key={index}
-                animation={index === 0 ? "slide-left" : index === 1 ? "fade-up" : "slide-right"}
+                animation={index === 0 ? "slide-left" : "slide-right"}
                 delay={100 + index * 100}
                 disableOnMobile={false}
                 triggerOnce={false}
+                className="w-full lg:w-80 xl:w-96 shrink-0"
               >
-                <div className="group">
-                  <TouchOptimizedCard borderColor={service.borderColor}>
+                <div className="group h-full">
+                  <TouchOptimizedCard borderColor={service.borderColor} className="h-full">
                     <CardHeader className="text-center pb-4">
                       <div
                         className={`mx-auto mb-4 p-4 ${service.color} rounded-full w-fit shadow-lg group-hover:scale-110 transition-transform duration-300`}
@@ -325,54 +315,6 @@ export default function AllSuppliesWebsite() {
         <MetricsSection />
       </section>
 
-      {/* Certifications Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <AnimatedSection animation="fade-up" delay={50}>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Certificaciones Internacionales</h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
-              <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Cumplimiento riguroso de estándares internacionales de calidad, seguridad y sostenibilidad
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "ISO 9001",
-                description: "Gestion de Calidad"
-              },
-              {
-                title: "ISO 14001",
-                description: "Gestion Ambiental"
-              },
-              {
-                title: "OHSAS 18001",
-                description: "Seguridad y Salud Ocupacional"
-              },
-              {
-                title: "ISO 27001",
-                description: "Seguridad de Informacion"
-              }
-            ].map((cert, idx) => (
-              <AnimatedSection
-                key={idx}
-                animation="fade-up"
-                delay={100 + idx * 50}
-                triggerOnce={false}
-              >
-                <div className="border-2 border-brand-green bg-white rounded-lg p-8 text-center hover:shadow-lg hover:border-brand-green-dark transition-all duration-300">
-                  <h3 className="font-bold text-2xl text-brand-blue-dark mb-3">{cert.title}</h3>
-                  <p className="text-text-secondary">{cert.description}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Strategic Allies Section */}
       <section className="py-20 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
@@ -386,39 +328,24 @@ export default function AllSuppliesWebsite() {
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { name: "Siemens", category: "Automatizacion Industrial", logo: "/allies/siemens.jpg" },
-              { name: "Danfoss", category: "Sistemas de Control", logo: "/allies/danfoss.jpg" },
-              { name: "ABB", category: "Equipos Electricos", logo: "/allies/abb.jpg" },
-              { name: "Schneider Electric", category: "Energia y Automatizacion", logo: "/allies/schneider.jpg" }
-            ].map((ally, idx) => (
-              <AnimatedSection
-                key={idx}
-                animation="scale-up"
-                delay={100 + idx * 75}
-                triggerOnce={false}
-              >
-                <div className="bg-white border-2 border-slate-200 rounded-lg p-6 text-center hover:border-brand-green hover:shadow-lg hover:scale-105 transition-all duration-300">
-                  <div className="h-24 flex items-center justify-center mb-4">
-                    <img
-                      src={ally.logo}
-                      alt={ally.name}
-                      className="max-h-full max-w-full object-contain"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none"
-                        if (e.currentTarget.parentElement) {
-                          e.currentTarget.parentElement.innerHTML = `<span class="text-3xl font-bold text-brand-blue-dark">${ally.name}</span>`
-                        }
-                      }}
-                    />
-                  </div>
-                  <h3 className="font-bold text-lg text-brand-blue-dark mb-1">{ally.name}</h3>
-                  <p className="text-text-secondary text-sm">{ally.category}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AlliesCarousel />
+        </div>
+      </section>
+
+      {/* Suppliers Section */}
+      <section className="py-20 bg-slate-50 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fade-up" delay={50}>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Proveedores</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-brand-blue to-brand-blue-dark mx-auto"></div>
+              <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
+                Empresas de confianza que nos proveen productos y servicios de calidad
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <SuppliersCarousel />
         </div>
       </section>
 
@@ -488,14 +415,14 @@ export default function AllSuppliesWebsite() {
                           <br />
                           Piso 19, Ciudad de Panamá - Panamá
                         </p>
-                        <a 
+                        <a
                           href="https://maps.google.com/?q=Ave.+Aquilino+de+la+Guardia+y+Calle+47,+Ocean+Business+Plaza,+Panama+City"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-block mt-3 text-brand-green-dark hover:text-brand-green font-semibold text-sm flex items-center space-x-1 hover:underline"
                         >
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                           </svg>
                           <span>Ver en Google Maps</span>
                         </a>
