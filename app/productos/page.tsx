@@ -42,6 +42,7 @@ const productsData = [
     description: "Componentes de fijacion certificados ASTM para la industria. Tornilleria de precision con multiples grados de aleacion. Especialmente disenada para ambientes corrosivos y altas temperaturas en aplicaciones industriales criticas.",
     features: [
       "Certificacion ASTM A193, A320, A353",
+      "Barras Roscadas",
       "Esparragos para altas temperaturas",
       "Multiples grados de aleacion disponibles",
       "Fabricacion especial personalizada",
@@ -213,8 +214,8 @@ function ProductosContent() {
                       type="button"
                       onClick={() => setSelectedProduct(product)}
                       className={`w-full text-left px-5 py-4 transition-all duration-200 font-medium text-sm ${selectedProduct.id === product.id
-                          ? "bg-brand-green text-white"
-                          : "bg-white text-text-primary hover:bg-slate-50 hover:text-brand-green"
+                        ? "bg-brand-green text-white"
+                        : "bg-white text-text-primary hover:bg-slate-50 hover:text-brand-green"
                         }`}
                     >
                       {product.name}
