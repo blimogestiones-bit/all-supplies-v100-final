@@ -6,6 +6,7 @@ import { TouchOptimizedCard } from "@/components/touch-optimized-card"
 import { ProductCarousel } from "@/components/product-carousel"
 import { ContactForm } from "@/components/contact-form"
 import { AlliesCarousel } from "@/components/allies-carousel"
+import { SuppliersCarousel } from "@/components/suppliers-carousel"
 import { MetricsSection } from "@/components/metrics-section"
 import { SmoothScrollNav } from "@/components/smooth-scroll-nav"
 import { Button } from "@/components/ui/button"
@@ -327,6 +328,23 @@ export default function AllSuppliesWebsite() {
           </AnimatedSection>
 
           <AlliesCarousel />
+        </div>
+      </section>
+
+      {/* Suppliers Section */}
+      <section className="py-20 bg-slate-50 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <AnimatedSection animation="fade-up" delay={50}>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Proveedores</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-brand-blue to-brand-blue-dark mx-auto"></div>
+              <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
+                Empresas de confianza que nos proveen productos y servicios de calidad
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <SuppliersCarousel />
         </div>
       </section>
 
