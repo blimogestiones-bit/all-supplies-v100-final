@@ -26,9 +26,9 @@ const productsData = [
     id: "taladros",
     name: "Taladros de Perforacion",
     image: "/products/taladros.jpg",
-    description: "Equipos de perforacion profesionales con capacidades desde 700HP hasta 3000HP. Suministrados directamente desde USA con especificaciones tecnicas completas. Disenados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
+    description: "Equipos de perforacion profesionales con capacidades desde 750HP hasta 3000HP. Suministrados directamente desde USA con especificaciones tecnicas completas. Disenados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
     features: [
-      "Capacidad: 750HP",
+      "Capacidad: 750HP a 3000HP",
       "Tecnologia de ultima generacion",
       "Suministro desde USA",
       "Soporte tecnico especializado"
@@ -212,11 +212,10 @@ function ProductosContent() {
                       key={product.id}
                       type="button"
                       onClick={() => setSelectedProduct(product)}
-                      className={`w-full text-left px-5 py-4 transition-all duration-200 font-medium text-sm ${
-                        selectedProduct.id === product.id
+                      className={`w-full text-left px-5 py-4 transition-all duration-200 font-medium text-sm ${selectedProduct.id === product.id
                           ? "bg-brand-green text-white"
                           : "bg-white text-text-primary hover:bg-slate-50 hover:text-brand-green"
-                      }`}
+                        }`}
                     >
                       {product.name}
                     </button>
