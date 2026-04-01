@@ -6,15 +6,16 @@ const allies = [
   { name: "Amvac Valves", category: "Valvulas Industriales", logo: "/allies/amvac-valves.jpg" },
   { name: "Dobicka Inc", category: "Equipos Industriales", logo: "/allies/dobicka-inc.jpg" },
   { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" },
-  { name: "Invercapital Casa de Bolsa", category: "Casa de Bolsa", logo: "/allies/iec.png" },
+  { name: "InverCapital Casa de Bolsa", category: "Casa de Bolsa", logo: "/allies/invercapital.png" },
   { name: "SEI Electric LLC", category: "Servicios Electricos", logo: "/allies/sei-electric.jpg" },
   { name: "Banesco", category: "Servicios Financieros", logo: "/allies/banesco.png" },
   { name: "MStar Technologie", category: "Tecnologia Industrial", logo: "/allies/mstar-technologie.png" },
   { name: "TradeXAuto", category: "Comercio Internacional", logo: "/allies/tradexauto.png" },
   { name: "J&R Oleo Suministros Industriales", category: "Suministros Industriales", logo: "/allies/jr-oleo.png" },
   { name: "Globex Re", category: "Reaseguradoras", logo: "/allies/globex-re.png" },
-  { name: "Optimum Capital", category: "Inversiones", logo: "/allies/optimum-capital.jpg" },
-  { name: "Inversiones Sumizara", category: "Inversiones", logo: "/allies/inversiones-sumizara.jpg" },
+  { name: "Optimum Capital", category: "Financiero", logo: "/allies/optimum-capital.jpg" },
+  { name: "Inversiones Sumizara", category: "Tecnologia", logo: "/allies/inversiones-sumizara.jpg" },
+  { name: "Inveraqua", category: "Inversiones", logo: "/allies/inveraqua.png" },
 ]
 
 // Duplicate for seamless infinite loop
