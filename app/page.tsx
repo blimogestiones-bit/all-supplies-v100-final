@@ -11,6 +11,7 @@ import { MetricsSection } from "@/components/metrics-section"
 import { SmoothScrollNav } from "@/components/smooth-scroll-nav"
 import { Button } from "@/components/ui/button"
 import { ScrollToTopLink } from "@/components/scroll-to-top-link"
+import { useLanguage } from "@/lib/language-context"
 
 // Simple SVG icons to replace lucide-react
 const ZapIcon = () => (
@@ -73,6 +74,8 @@ const ProcurementIcon = () => (
 )
 
 export default function AllSuppliesWebsite() {
+  const { t, language } = useLanguage()
+
   // Datos de productos para el carrusel
   const productsCarouselData = [
     {
@@ -197,14 +200,14 @@ export default function AllSuppliesWebsite() {
           <div className="max-w-5xl mx-auto space-y-6">
             <AnimatedSection animation="fade-up" delay={100}>
               <h2 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-2xl leading-tight">
-                Soluciones Estratégicas Integrales
+                {t.hero.title}
               </h2>
               <div className="h-1 w-24 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={200}>
               <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed drop-shadow-lg font-light max-w-4xl mx-auto">
-                Empresa multinacional especializada en brindar soluciones estratégicas integrales a través de dos divisiones clave: <span className="font-semibold">Energía, tecnología y seguridad</span> y <span className="font-semibold">Servicios de Procura</span>.
+                {t.hero.subtitle} <span className="font-semibold">{t.hero.division1}</span> {language === "es" ? "y" : "and"} <span className="font-semibold">{t.hero.division2}</span>.
               </p>
             </AnimatedSection>
 
@@ -214,13 +217,13 @@ export default function AllSuppliesWebsite() {
                   onClick={() => scrollToSection("productos")}
                   className="px-8 py-4 bg-gradient-to-r from-brand-green to-brand-green-dark text-white font-bold rounded-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg"
                 >
-                  Ver Productos
+                  {t.hero.cta}
                 </button>
                 <button
                   onClick={() => scrollToSection("contacto")}
                   className="px-8 py-4 bg-white/20 backdrop-blur-md text-white font-bold rounded-lg border-2 border-white hover:bg-white/30 transform hover:scale-105 transition-all duration-300 text-lg"
                 >
-                  Contactar Ahora
+                  {t.hero.ctaContact}
                 </button>
               </div>
             </AnimatedSection>
@@ -240,10 +243,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Nuestros Productos</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.products.title}</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Catálogo completo de soluciones especializadas para la industria
+                {t.products.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -264,10 +267,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Servicios</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.services.title}</h2>
               <div className="w-24 h-1 bg-brand-green-dark mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Descubre nuestras tres divisiones especializadas y cómo podemos impulsar el crecimiento de tu empresa
+                {t.services.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -298,7 +301,7 @@ export default function AllSuppliesWebsite() {
                         <Button
                           className={`w-full ${service.buttonColor} text-white hover:shadow-lg transform hover:scale-105 transition-all duration-300 border-0 font-semibold`}
                         >
-                          Ver detalles completos
+                          {t.services.viewDetails}
                         </Button>
                       </ScrollToTopLink>
                     </CardContent>
@@ -320,10 +323,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Aliados Estratégicos</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.allies.title}</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Red de proveedores internacionales y socios comerciales en la industria
+                {t.allies.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -337,10 +340,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Proveedores</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.suppliers.title}</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-blue to-brand-blue-dark mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Empresas de confianza que nos proveen productos y servicios de calidad
+                {t.suppliers.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -354,11 +357,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Contáctanos</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.contact.title}</h2>
               <div className="w-24 h-1 bg-brand-green-dark mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                ¿Listo para optimizar tus operaciones? Completa el formulario y te contactaremos para una consulta
-                personalizada
+                {t.contact.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -376,13 +378,13 @@ export default function AllSuppliesWebsite() {
                   <CardHeader className="bg-brand-blue-dark text-white rounded-t-lg">
                     <CardTitle className="flex items-center space-x-2">
                       <MailIcon />
-                      <span>Información de Contacto</span>
+                      <span>{t.contact.infoTitle}</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 bg-brand-blue-50">
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-semibold text-text-primary mb-2">Correos Electrónicos:</h4>
+                        <h4 className="font-semibold text-text-primary mb-2">{t.contact.emails}:</h4>
                         <div className="space-y-1">
                           <p className="text-text-secondary">info@allsuppliesinv.com</p>
                           <p className="text-text-secondary">allsuppliesinv@gmail.com</p>
@@ -462,10 +464,10 @@ export default function AllSuppliesWebsite() {
             {/* Información de la empresa */}
             <div className="text-center max-w-2xl">
               <p className="text-lg font-medium text-brand-blue-dark mb-2">
-                Soluciones estratégicas integrales para mercados globales
+                {t.hero.title}
               </p>
               <p className="text-text-secondary">
-                Empresa multinacional especializada en Energía, tecnología y seguridad y Servicios de Procura
+                {t.footer.description}
               </p>
             </div>
 
@@ -475,19 +477,19 @@ export default function AllSuppliesWebsite() {
                 onClick={() => scrollToSection("servicios")}
                 className="text-text-secondary hover:text-brand-green-dark transition-colors"
               >
-                Servicios
+                {t.nav.servicios}
               </button>
               <button
                 onClick={() => scrollToSection("nosotros")}
                 className="text-text-secondary hover:text-brand-green-dark transition-colors"
               >
-                Nosotros
+                {t.nav.nosotros}
               </button>
               <button
                 onClick={() => scrollToSection("contacto")}
                 className="text-text-secondary hover:text-brand-green-dark transition-colors"
               >
-                Contacto
+                {t.nav.contacto}
               </button>
             </div>
 
@@ -504,7 +506,7 @@ export default function AllSuppliesWebsite() {
             {/* Copyright */}
             <div className="border-t border-gray-200 pt-6 w-full text-center">
               <p className="text-sm text-text-muted">
-                © 2025 All Supplies & Investment Inc. Todos los derechos reservados.
+                © 2025 All Supplies & Investment Inc. {t.footer.rights}
               </p>
             </div>
           </div>

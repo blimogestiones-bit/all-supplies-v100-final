@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useLanguage } from "@/lib/language-context"
 
 // Simple SVG icons to replace lucide-react
 const MessageCircleIcon = () => (
@@ -57,6 +58,7 @@ interface FormData {
 }
 
 export function ContactForm() {
+  const { t, language } = useLanguage()
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -81,17 +83,17 @@ export function ContactForm() {
     const newErrors: Partial<FormData> = {}
 
     if (!formData.name.trim()) {
-      newErrors.name = "El nombre es obligatorio"
+      newErrors.name = language === "es" ? "El nombre es obligatorio" : "Name is required"
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "El email es obligatorio"
+      newErrors.email = language === "es" ? "El email es obligatorio" : "Email is required"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "El email no es válido"
+      newErrors.email = language === "es" ? "El email no es válido" : "Email is not valid"
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "El mensaje es obligatorio"
+      newErrors.message = language === "es" ? "El mensaje es obligatorio" : "Message is required"
     }
 
     setErrors(newErrors)
@@ -157,9 +159,13 @@ Enviado desde: allsuppliesinv.com
         <div className="mx-auto mb-4 p-3 bg-white/20 rounded-full w-fit">
           <MessageCircleIcon />
         </div>
-        <CardTitle className="text-2xl font-bold">Solicitar Consulta</CardTitle>
+        <CardTitle className="text-2xl font-bold">
+          {language === "es" ? "Solicitar Consulta" : "Request Consultation"}
+        </CardTitle>
         <CardDescription className="text-white">
-          Completa el formulario y te contactaremos vía WhatsApp para brindarte una consulta personalizada
+          {language === "es" 
+            ? "Completa el formulario y te contactaremos vía WhatsApp para brindarte una consulta personalizada"
+            : "Fill out the form and we will contact you via WhatsApp to provide personalized assistance"}
         </CardDescription>
       </CardHeader>
       <CardContent className="p-6 bg-white">
@@ -168,12 +174,12 @@ Enviado desde: allsuppliesinv.com
             <div className="space-y-2">
               <Label htmlFor="name" className="flex items-center space-x-2 text-text-primary font-medium">
                 <UserIcon />
-                <span>Nombre completo *</span>
+                <span>{t.contact.form.name} *</span>
               </Label>
               <Input
                 id="name"
                 type="text"
-                placeholder="Tu nombre completo"
+                placeholder={language === "es" ? "Tu nombre completo" : "Your full name"}
                 value={formData.name}
                 onChange={(e) => handleInputChange("name", e.target.value)}
                 required
@@ -224,7 +230,7 @@ Enviado desde: allsuppliesinv.com
             <div className="space-y-2">
               <Label htmlFor="phone" className="flex items-center space-x-2 text-text-primary font-medium">
                 <PhoneIcon />
-                <span>Teléfono</span>
+                <span>{t.contact.form.phone}</span>
               </Label>
               <Input
                 id="phone"
@@ -239,12 +245,12 @@ Enviado desde: allsuppliesinv.com
             <div className="space-y-2">
               <Label htmlFor="company" className="flex items-center space-x-2 text-text-primary font-medium">
                 <BuildingIcon />
-                <span>Empresa</span>
+                <span>{language === "es" ? "Empresa" : "Company"}</span>
               </Label>
               <Input
                 id="company"
                 type="text"
-                placeholder="Nombre de tu empresa"
+                placeholder={language === "es" ? "Nombre de tu empresa" : "Your company name"}
                 value={formData.company}
                 onChange={(e) => handleInputChange("company", e.target.value)}
                 className="w-full border-2 border-slate-300 focus:border-brand-green-dark focus:ring-brand-green-dark transition-colors"
@@ -254,29 +260,28 @@ Enviado desde: allsuppliesinv.com
 
           <div className="space-y-2">
             <Label htmlFor="service" className="text-text-primary font-medium">
-              Servicio de interés
+              {t.contact.form.service}
             </Label>
             <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
               <SelectTrigger className="border-2 border-slate-300 focus:border-brand-green-dark">
-                <SelectValue placeholder="Selecciona un servicio" />
+                <SelectValue placeholder={t.contact.form.selectService} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="energia-tecnologia">Energía, tecnología y seguridad</SelectItem>
-                <SelectItem value="procura-internacional">Servicios de Procura Internacional</SelectItem>
-                <SelectItem value="servicios-financieros">Servicios Financieros Internacionales</SelectItem>
-                <SelectItem value="consultoria-general">Consultoría General</SelectItem>
-                <SelectItem value="otro">Otro</SelectItem>
+                <SelectItem value="energia-tecnologia">{t.contact.serviceOptions.energia}</SelectItem>
+                <SelectItem value="procura-internacional">{t.contact.serviceOptions.procura}</SelectItem>
+                <SelectItem value="productos">{t.contact.serviceOptions.productos}</SelectItem>
+                <SelectItem value="otro">{t.contact.serviceOptions.otro}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="message" className="text-text-primary font-medium">
-              Mensaje *
+              {t.contact.form.message} *
             </Label>
             <Textarea
               id="message"
-              placeholder="Describe tu proyecto o necesidad específica..."
+              placeholder={t.contact.form.messagePlaceholder}
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
               required
@@ -302,18 +307,19 @@ Enviado desde: allsuppliesinv.com
             className="w-full bg-brand-green-dark hover:bg-brand-green text-white py-3 text-lg font-semibold border-0 focus:outline-none focus:ring-2 focus:ring-brand-green-dark focus:ring-offset-2 transition-all"
           >
             {isSubmitting ? (
-              "Enviando..."
+              t.contact.form.sending
             ) : (
               <>
                 <SendIcon />
-                Enviar consulta por WhatsApp
+                {t.contact.form.submit}
               </>
             )}
           </Button>
 
           <p className="text-xs text-text-muted text-center">
-            Al enviar este formulario, serás redirigido a WhatsApp para completar tu consulta de forma directa y
-            personalizada.
+            {language === "es" 
+              ? "Al enviar este formulario, serás redirigido a WhatsApp para completar tu consulta de forma directa y personalizada."
+              : "By submitting this form, you will be redirected to WhatsApp to complete your inquiry directly and personally."}
           </p>
         </form>
       </CardContent>

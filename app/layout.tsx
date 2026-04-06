@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { PWAInstallPrompt } from "@/components/pwa-install-prompt"
 import { ConnectionStatus } from "@/components/connection-status"
+import { LanguageProvider } from "@/lib/language-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -102,9 +103,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={inter.className} style={{ scrollBehavior: "smooth" }}>
-        <ConnectionStatus />
-        {children}
-        <PWAInstallPrompt />
+        <LanguageProvider>
+          <ConnectionStatus />
+          {children}
+          <PWAInstallPrompt />
+        </LanguageProvider>
       </body>
     </html>
   )
