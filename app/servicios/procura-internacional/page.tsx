@@ -110,12 +110,11 @@ export default function ProcuraInternacionalPage() {
           <div className="max-w-4xl mx-auto mb-16">
             <Card className="border-l-4 border-l-green-500 shadow-xl bg-gradient-to-r from-white to-green-50">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Optimizando Cadenas de Suministro Globales</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  {t.services.procura.mainTitle}
+                </h2>
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Nuestra división de Procura Internacional se especializa en diseñar y ejecutar procesos de procura
-                  técnica que maximizan la eficiencia y minimizan los riesgos. Con una red global de proveedores
-                  verificados y sistemas de trazabilidad avanzados, garantizamos el cumplimiento normativo y la calidad
-                  en cada proyecto.
+                  {t.services.procura.mainDesc}
                 </p>
               </CardContent>
             </Card>
@@ -127,7 +126,7 @@ export default function ProcuraInternacionalPage() {
               <CardHeader className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <GlobeIcon />
-                  <span>Características Principales</span>
+                  <span>{t.services.procura.characteristics}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -147,7 +146,7 @@ export default function ProcuraInternacionalPage() {
               <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <TruckIcon />
-                  <span>Beneficios Clave</span>
+                  <span>{t.services.procura.benefits}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -190,13 +189,16 @@ export default function ProcuraInternacionalPage() {
           <div className="text-center">
             <Card className="max-w-2xl mx-auto shadow-xl bg-gradient-to-r from-green-500 to-green-600 text-white">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">¿Necesitas optimizar tu cadena de suministro?</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  {language === "es" ? "¿Necesitas optimizar tu cadena de suministro?" : "Do you need to optimize your supply chain?"}
+                </h3>
                 <p className="text-green-100 mb-6">
-                  Contáctanos para descubrir cómo podemos reducir tus costos de procura y mejorar tu eficiencia
-                  operacional.
+                  {language === "es"
+                    ? "Contáctanos para descubrir cómo podemos reducir tus costos de procura y mejorar tu eficiencia operacional."
+                    : "Contact us to discover how we can reduce your procurement costs and improve your operational efficiency."}
                 </p>
                 <ContactLink className="bg-white text-green-600 hover:bg-green-50 px-8 py-3 text-lg font-semibold rounded-md transition-colors">
-                  Solicitar Consulta
+                  {language === "es" ? "Solicitar Consulta" : "Request Consultation"}
                 </ContactLink>
               </CardContent>
             </Card>

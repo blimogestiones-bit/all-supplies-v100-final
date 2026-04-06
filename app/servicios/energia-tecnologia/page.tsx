@@ -117,13 +117,10 @@ export default function EnergiaTecnologiaPage() {
             <Card className="border-l-4 border-l-orange-500 shadow-xl bg-gradient-to-r from-white to-orange-50">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                  Liderando la Innovación Tecnológica Industrial
+                  {t.services.energia.mainTitle}
                 </h2>
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Nuestra división de Energía, tecnología y seguridad se especializa en proporcionar soluciones tecnológicas
-                  avanzadas que optimizan la eficiencia operacional en múltiples sectores industriales. Desde
-                  automatización hasta control de procesos, ofrecemos equipos certificados y soporte técnico
-                  especializado que cumplen con los más altos estándares internacionales.
+                  {t.services.energia.mainDesc}
                 </p>
               </CardContent>
             </Card>
@@ -135,7 +132,7 @@ export default function EnergiaTecnologiaPage() {
               <CardHeader className="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <WrenchIcon />
-                  <span>Características Principales</span>
+                  <span>{t.services.energia.characteristics}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -155,7 +152,7 @@ export default function EnergiaTecnologiaPage() {
               <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <ShieldIcon />
-                  <span>Beneficios Clave</span>
+                  <span>{t.services.energia.benefits}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -198,13 +195,16 @@ export default function EnergiaTecnologiaPage() {
           <div className="text-center">
             <Card className="max-w-2xl mx-auto shadow-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">¿Listo para optimizar tus operaciones industriales?</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  {language === "es" ? "¿Listo para optimizar tus operaciones industriales?" : "Ready to optimize your industrial operations?"}
+                </h3>
                 <p className="text-orange-100 mb-6">
-                  Contáctanos para una consulta especializada y descubre cómo podemos impulsar la eficiencia tecnológica
-                  de tu empresa.
+                  {language === "es" 
+                    ? "Contáctanos para una consulta especializada y descubre cómo podemos impulsar la eficiencia tecnológica de tu empresa."
+                    : "Contact us for a specialized consultation and discover how we can drive the technological efficiency of your company."}
                 </p>
                 <ContactLink className="bg-white text-orange-600 hover:bg-orange-50 px-8 py-3 text-lg font-semibold rounded-md transition-colors">
-                  Solicitar Consulta
+                  {language === "es" ? "Solicitar Consulta" : "Request Consultation"}
                 </ContactLink>
               </CardContent>
             </Card>

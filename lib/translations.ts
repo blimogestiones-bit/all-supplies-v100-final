@@ -64,10 +64,18 @@ export const translations = {
       energia: {
         title: "Energía, tecnología y seguridad",
         description: "Suministro y soporte técnico especializado para el sector industrial",
+        mainTitle: "Liderando la Innovación Tecnológica Industrial",
+        mainDesc: "Nuestra división de Energía, tecnología y seguridad se especializa en proporcionar soluciones tecnológicas avanzadas que optimizan la eficiencia operacional en múltiples sectores industriales. Desde automatización hasta control de procesos, ofrecemos equipos certificados y soporte técnico especializado que cumplen con los más altos estándares internacionales.",
+        characteristics: "Características Principales",
+        benefits: "Beneficios Clave",
       },
       procura: {
         title: "Servicios de Procura Internacional",
         description: "Gestión integral de procesos de procura técnica para proyectos industriales",
+        mainTitle: "Gestión Integral de Procura Técnica Internacional",
+        mainDesc: "Proporcionamos soluciones completas de procura que abarcan desde la identificación de proveedores hasta la entrega final de equipos. Nuestro equipo especializado cuenta con experiencia en múltiples sectores industriales, garantizando eficiencia, transparencia y cumplimiento normativo en cada proyecto.",
+        characteristics: "Características Principales",
+        benefits: "Beneficios Clave",
       },
     },
     // Allies section
@@ -142,6 +150,16 @@ export const translations = {
       tecnologia: "Tecnología",
       comercioInternacional: "Comercio Internacional",
     },
+    // Metrics/Trajectory section
+    metrics: {
+      title: "Nuestra Trayectoria en Números",
+      subtitle: "Más de una década construyendo relaciones sólidas y entregando resultados excepcionales a nivel internacional",
+      satisfied: "Empresas Satisfechas",
+      experience: "Años de Experiencia",
+      countries: "Países de Operación",
+      professionals: "Profesionales Especializados",
+      quote: "Nuestro compromiso con la excelencia nos ha permitido establecer alianzas estratégicas globales y mantener la confianza de nuestros clientes a lo largo de los años.",
+    },
   },
   en: {
     // Navbar
@@ -208,10 +226,18 @@ export const translations = {
       energia: {
         title: "Energy, Technology and Security",
         description: "Specialized supply and technical support for the industrial sector",
+        mainTitle: "Leading Industrial Technological Innovation",
+        mainDesc: "Our Energy, Technology and Security division specializes in providing advanced technological solutions that optimize operational efficiency across multiple industrial sectors. From automation to process control, we offer certified equipment and specialized technical support that meet the highest international standards.",
+        characteristics: "Key Characteristics",
+        benefits: "Key Benefits",
       },
       procura: {
         title: "International Procurement Services",
         description: "Comprehensive management of technical procurement processes for industrial projects",
+        mainTitle: "Comprehensive Management of International Technical Procurement",
+        mainDesc: "We provide complete procurement solutions that range from supplier identification to final equipment delivery. Our specialized team has experience in multiple industrial sectors, guaranteeing efficiency, transparency and regulatory compliance in each project.",
+        characteristics: "Key Characteristics",
+        benefits: "Key Benefits",
       },
     },
     // Allies section
@@ -285,6 +311,16 @@ export const translations = {
       reaseguradora: "Reinsurer",
       tecnologia: "Technology",
       comercioInternacional: "International Trade",
+    },
+    // Metrics/Trajectory section
+    metrics: {
+      title: "Our Track Record in Numbers",
+      subtitle: "Over a decade building solid relationships and delivering exceptional results at the international level",
+      satisfied: "Satisfied Companies",
+      experience: "Years of Experience",
+      countries: "Operating Countries",
+      professionals: "Specialized Professionals",
+      quote: "Our commitment to excellence has allowed us to establish global strategic alliances and maintain the trust of our clients throughout the years.",
     },
   },
 }
