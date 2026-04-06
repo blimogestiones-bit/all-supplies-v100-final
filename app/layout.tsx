@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "All Supplies - Soluciones Estratégicas Integrales",
   description:
-    "Empresa multinacional especializada en soluciones estratégicas para Energía y Petróleo, Servicios de Procura y Gestión Financiera Internacional",
+    "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
   keywords: ["energía", "petróleo", "procura", "servicios financieros", "consultoría", "venezuela", "panamá"],
   authors: [{ name: "All Supplies" }],
   creator: "All Supplies",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "All Supplies - Soluciones Estratégicas Integrales",
     description:
-      "Empresa multinacional especializada en soluciones estratégicas para Energía y Petróleo, Servicios de Procura y Gestión Financiera Internacional",
+      "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
     url: "https://allsuppliesinv.com",
     siteName: "All Supplies",
     locale: "es_ES",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "All Supplies - Soluciones Estratégicas Integrales",
     description:
-      "Empresa multinacional especializada en soluciones estratégicas para Energía y Petróleo, Servicios de Procura y Gestión Financiera Internacional",
+      "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
     images: ["/og-image.png"],
   },
   robots: {

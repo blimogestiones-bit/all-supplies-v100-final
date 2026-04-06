@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 const allies = [
-  { name: "Amvac Valves", category: "Valvulas Industriales", logo: "/allies/amvac-valves.jpg" },
+  { name: "Amvac Valves", category: "Válvulas Industriales", logo: "/allies/amvac-valves.jpg" },
   { name: "Dobicka Inc", category: "Equipos Industriales", logo: "/allies/dobicka-inc.jpg", larger: true },
-  { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" },
-  { name: "SEI Electric LLC", category: "Servicios Electricos", logo: "/allies/sei-electric.jpg" },
-  { name: "MStar Technologie", category: "Tecnologia Industrial", logo: "/allies/mstar-technologie.png" },
+  { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforación", logo: "/allies/drilling-consulting.jpg" },
+  { name: "SEI Electric LLC", category: "Servicios Eléctricos", logo: "/allies/sei-electric.jpg" },
+  { name: "MStar Technologie", category: "Tecnología Industrial", logo: "/allies/mstar-technologie.png" },
   { name: "J&R Oleo Suministros Industriales", category: "Suministros Industriales", logo: "/allies/jr-oleo.png" },
   { name: "InverCapital Casa de Bolsa", category: "Casa de Bolsa", logo: "/allies/invercapital.png", larger: true },
   { name: "Optimum Capital", category: "Financiero", logo: "/allies/optimum-capital.jpg" },

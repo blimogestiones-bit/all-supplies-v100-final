@@ -77,22 +77,22 @@ export default function AllSuppliesWebsite() {
   const productsCarouselData = [
     {
       id: "valvulas",
-      name: "Valvulas",
-      description: "Sistemas de control industrial de alta presion y especificacion. Disponibles globalmente.",
+      name: "Válvulas",
+      description: "Sistemas de control industrial de alta presión y especificación. Disponibles globalmente.",
       image: "/products/valvulas.jpg",
       href: "/productos",
     },
     {
       id: "taladros",
-      name: "Taladros de Perforacion",
-      description: "Equipos de perforacion profesionales desde 750HP hasta 3000HP. Suministro desde USA.",
+      name: "Taladros de Perforación",
+      description: "Equipos de perforación profesionales desde 750HP hasta 3000HP. Suministro desde USA.",
       image: "/products/taladros.jpg",
       href: "/productos",
     },
     {
       id: "tornilleria",
-      name: "Tornilleria Industrial",
-      description: "Componentes de fijacion certificados ASTM. Multiples grados de aleacion disponibles.",
+      name: "Tornillería Industrial",
+      description: "Componentes de fijación certificados ASTM. Múltiples grados de aleación disponibles.",
       image: "/products/tornilleria-esparrago.jpg",
       images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
       href: "/productos",
@@ -106,29 +106,29 @@ export default function AllSuppliesWebsite() {
     },
     {
       id: "revestidores",
-      name: "Revestidores y Tuberias",
-      description: "Tuberia de acero de alta resistencia. Diametros de 4 1/2\" a 13 3/8\" disponibles.",
+      name: "Revestidores y Tuberías",
+      description: "Tubería de acero de alta resistencia. Diámetros de 4 1/2\" a 13 3/8\" disponibles.",
       image: "/products/revestidores.jpg",
       href: "/productos",
     },
     {
       id: "wellcomm",
       name: "Sensor WellComm",
-      description: "Sistema de monitoreo inteligente en tiempo real. Transmision inalambrica y alertas.",
+      description: "Sistema de monitoreo inteligente en tiempo real. Transmisión inalámbrica y alertas.",
       image: "/products/sensor-wellcomm.jpg",
       href: "/productos",
     },
     {
       id: "hmi",
       name: "HMI DataLogger",
-      description: "Interface profesional con registro automatico de datos y acceso remoto seguro.",
+      description: "Interface profesional con registro automático de datos y acceso remoto seguro.",
       image: "/products/hmi-datalogger.jpg",
       href: "/productos",
     },
     {
       id: "variador",
       name: "Variadores de Frecuencia",
-      description: "Control de velocidad de alto rendimiento. Eficiencia energetica optimizada.",
+      description: "Control de velocidad de alto rendimiento. Eficiencia energética optimizada.",
       image: "/products/variador.jpg",
       href: "/productos",
     },
@@ -243,7 +243,7 @@ export default function AllSuppliesWebsite() {
               <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Nuestros Productos</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Catalogo completo de soluciones especializadas para la industria
+                Catálogo completo de soluciones especializadas para la industria
               </p>
             </div>
           </AnimatedSection>
@@ -465,8 +465,7 @@ export default function AllSuppliesWebsite() {
                 Soluciones estratégicas integrales para mercados globales
               </p>
               <p className="text-text-secondary">
-                Empresa multinacional especializada en Energía, tecnología y seguridad, Servicios de Procura y Gestión Financiera
-                Internacional
+                Empresa multinacional especializada en Energía, tecnología y seguridad y Servicios de Procura
               </p>
             </div>
 
@@ -521,7 +520,7 @@ export default function AllSuppliesWebsite() {
             "@type": "Organization",
             name: "All Supplies & Investment Inc",
             description:
-              "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad, Servicios de Procura y Gestión Financiera Internacional",
+              "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
             url: "https://allsuppliesinv.com",
             logo: "https://allsuppliesinv.com/logo-all-supplies-complete.png",
             contactPoint: [

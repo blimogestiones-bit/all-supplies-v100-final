@@ -9,46 +9,46 @@ import Link from "next/link"
 const productsData = [
   {
     id: "valvulas",
-    name: "Valvulas",
+    name: "Válvulas",
     image: "/products/valvulas.jpg",
-    description: "Sistemas de valvulas de control industrial de alta especificacion para operaciones criticas. Disponibles en todo el mundo con suministro directo desde USA. Rango completo de capacidades para diferentes aplicaciones industriales.",
+    description: "Sistemas de válvulas de control industrial de alta especificación para operaciones críticas. Disponibles en todo el mundo con suministro directo desde USA. Rango completo de capacidades para diferentes aplicaciones industriales.",
     features: [
-      "Control de presion hasta 3000 PSI",
-      "Compatible con tuberias 1/2\" a 4\"",
-      "Cuerpo en acero carbon certificado",
+      "Control de presión hasta 3000 PSI",
+      "Compatible con tuberías 1/2\" a 4\"",
+      "Cuerpo en acero carbón certificado",
       "Disponible en stock permanente",
-      "Distribucion global desde USA",
-      "Certificacion API 6A y ISO 14313"
+      "Distribución global desde USA",
+      "Certificación API 6A y ISO 14313"
     ],
     video: null,
   },
   {
     id: "taladros",
-    name: "Taladros de Perforacion",
+    name: "Taladros de Perforación",
     image: "/products/taladros.jpg",
-    description: "Equipos de perforacion profesionales con capacidades desde 750HP hasta 3000HP. Suministrados directamente desde USA con especificaciones tecnicas completas. Disenados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
+    description: "Equipos de perforación profesionales con capacidades desde 750HP hasta 3000HP. Suministrados directamente desde USA con especificaciones técnicas completas. Diseñados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
     features: [
       "Capacidad: 750HP a 3000HP",
-      "Tecnologia de ultima generacion",
+      "Tecnología de última generación",
       "Suministro desde USA",
-      "Soporte tecnico especializado"
+      "Soporte técnico especializado"
     ],
     video: null,
   },
   {
     id: "tornilleria",
-    name: "Tornilleria Industrial",
+    name: "Tornillería Industrial",
     image: "/products/tornilleria-esparrago.jpg",
     images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
-    description: "Componentes de fijacion certificados ASTM para la industria. Tornilleria de precision con multiples grados de aleacion. Especialmente disenada para ambientes corrosivos y altas temperaturas en aplicaciones industriales criticas.",
+    description: "Componentes de fijación certificados ASTM para la industria. Tornillería de precisión con múltiples grados de aleación. Especialmente diseñada para ambientes corrosivos y altas temperaturas en aplicaciones industriales críticas.",
     features: [
-      "Certificacion ASTM A193, A320, A353",
+      "Certificación ASTM A193, A320, A353",
       "Barras Roscadas",
-      "Esparragos para altas temperaturas",
-      "Multiples grados de aleacion disponibles",
-      "Fabricacion especial personalizada",
-      "Stock permanente de items estandar",
-      "Calibracion verificada y certificada"
+      "Espárragos para altas temperaturas",
+      "Múltiples grados de aleación disponibles",
+      "Fabricación especial personalizada",
+      "Stock permanente de ítems estándar",
+      "Calibración verificada y certificada"
     ],
     video: null,
   },
@@ -56,29 +56,29 @@ const productsData = [
     id: "herramientas",
     name: "Herramientas Profesionales",
     image: "/products/herramientas.jpg",
-    description: "Herramientas de precision de marcas reconocidas internacionalmente. Equipos electricos y manuales disenados para ambientes exigentes de la industria. Durabilidad y rendimiento garantizados bajo las condiciones mas dificiles.",
+    description: "Herramientas de precisión de marcas reconocidas internacionalmente. Equipos eléctricos y manuales diseñados para ambientes exigentes de la industria. Durabilidad y rendimiento garantizados bajo las condiciones más difíciles.",
     features: [
       "Marcas: DeWalt, Nikato, Stanley",
-      "Herramientas electricas profesionales",
-      "Equipos manuales de precision",
-      "Diseno ergonomico y robusto",
-      "Garantia del fabricante incluida",
+      "Herramientas eléctricas profesionales",
+      "Equipos manuales de precisión",
+      "Diseño ergonómico y robusto",
+      "Garantía del fabricante incluida",
       "Disponible para venta y renta"
     ],
     video: null,
   },
   {
     id: "revestidores",
-    name: "Revestidores y Tuberias",
+    name: "Revestidores y Tuberías",
     image: "/products/revestidores.jpg",
-    description: "Tuberias de revestimiento de acero de alta resistencia para construccion y operacion de pozos profundos. Disponibles en multiples dimensiones. Especificaciones tecnicas completas para cualquier aplicacion industrial.",
+    description: "Tuberías de revestimiento de acero de alta resistencia para construcción y operación de pozos profundos. Disponibles en múltiples dimensiones. Especificaciones técnicas completas para cualquier aplicación industrial.",
     features: [
-      "Diametro externo: 4 1/2\" a 13 3/8\"",
+      "Diámetro externo: 4 1/2\" a 13 3/8\"",
       "Espesor de pared: 0.205\" a 0.514\"",
-      "Tuberia de produccion disponible",
-      "Cabillas en multiples tamanos",
-      "Certificacion de resistencia verificada",
-      "Disponible en acero carbon y aleaciones"
+      "Tubería de producción disponible",
+      "Cabillas en múltiples tamaños",
+      "Certificación de resistencia verificada",
+      "Disponible en acero carbón y aleaciones"
     ],
     video: null,
   },
@@ -86,14 +86,14 @@ const productsData = [
     id: "wellcomm",
     name: "Sensor WellComm",
     image: "/products/sensor-wellcomm.jpg",
-    description: "Sistema avanzado de monitoreo inteligente en tiempo real para pozos. Transmision de datos inalambrica remota. Analisis avanzado de parametros operacionales criticos para la industria.",
+    description: "Sistema avanzado de monitoreo inteligente en tiempo real para pozos. Transmisión de datos inalámbrica remota. Análisis avanzado de parámetros operacionales críticos para la industria.",
     features: [
       "Monitoreo en tiempo real 24/7",
-      "Transmision inalambrica confiable",
-      "Sensores de presion y temperatura",
-      "Almacenamiento de datos historicos",
+      "Transmisión inalámbrica confiable",
+      "Sensores de presión y temperatura",
+      "Almacenamiento de datos históricos",
       "Panel de control remoto",
-      "Alertas y notificaciones automaticas"
+      "Alertas y notificaciones automáticas"
     ],
     video: null,
   },
@@ -101,14 +101,14 @@ const productsData = [
     id: "hmi",
     name: "HMI DataLogger",
     image: "/products/hmi-datalogger.jpg",
-    description: "Interface HMI profesional con registro automatico de datos para sistemas industriales. Visualizacion en tiempo real de parametros operacionales. Almacenamiento seguro de datos historicos con acceso remoto.",
+    description: "Interface HMI profesional con registro automático de datos para sistemas industriales. Visualización en tiempo real de parámetros operacionales. Almacenamiento seguro de datos históricos con acceso remoto.",
     features: [
-      "Interface grafica intuitiva",
-      "Registro automatico de datos",
+      "Interface gráfica intuitiva",
+      "Registro automático de datos",
       "Almacenamiento en tiempo real",
       "Acceso remoto seguro",
       "Control de equipos integrado",
-      "Reportes automaticos y analisis"
+      "Reportes automáticos y análisis"
     ],
     video: null,
   },
@@ -116,14 +116,14 @@ const productsData = [
     id: "variador",
     name: "Variadores de Frecuencia",
     image: "/products/variador.jpg",
-    description: "Convertidores de frecuencia de alto rendimiento para control de velocidad en sistemas de bombeo y produccion. Optimizacion de eficiencia energetica. Especializados para aplicaciones criticas en la industria.",
+    description: "Convertidores de frecuencia de alto rendimiento para control de velocidad en sistemas de bombeo y producción. Optimización de eficiencia energética. Especializados para aplicaciones críticas en la industria.",
     features: [
       "Control de velocidad variable",
-      "Eficiencia energetica optimizada",
-      "Proteccion de equipos integrada",
-      "Reduccion de costos operacionales",
-      "Diseno industrial robusto",
-      "Compatible con multiples motores"
+      "Eficiencia energética optimizada",
+      "Protección de equipos integrada",
+      "Reducción de costos operacionales",
+      "Diseño industrial robusto",
+      "Compatible con múltiples motores"
     ],
     video: "/videos/variador.mp4",
   }
@@ -191,7 +191,7 @@ function ProductosContent() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <AnimatedSection animation="fade-up" delay={100}>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-2xl">
-              Catalogo de Productos
+              Catálogo de Productos
             </h1>
             <p className="text-lg text-white/90 drop-shadow-lg">
               Soluciones especializadas para la industria
@@ -262,7 +262,7 @@ function ProductosContent() {
                     </h2>
                     <div>
                       <h3 className="text-xs font-bold text-brand-green uppercase tracking-widest mb-2">
-                        Descripcion
+                        Descripción
                       </h3>
                       <p className="text-text-secondary leading-relaxed text-sm">
                         {selectedProduct.description}
@@ -274,7 +274,7 @@ function ProductosContent() {
                 <div className="p-6 pt-0 border-t border-slate-100">
                   <div className="mb-6">
                     <h3 className="text-xs font-bold text-brand-green uppercase tracking-widest mb-4 pt-6">
-                      Caracteristicas Tecnicas
+                      Características Técnicas
                     </h3>
                     <div className="grid md:grid-cols-2 gap-2">
                       {selectedProduct.features.map((feature, idx) => (
@@ -301,7 +301,7 @@ function ProductosContent() {
                           poster={selectedProduct.image}
                         >
                           <source src={selectedProduct.video} type="video/mp4" />
-                          Tu navegador no soporta la reproduccion de videos.
+                          Tu navegador no soporta la reproducción de videos.
                         </video>
                       </div>
                     </div>
@@ -310,7 +310,7 @@ function ProductosContent() {
                   <div className="pt-4 border-t border-slate-200">
                     <Link href="/#contacto">
                       <Button className="px-6 py-3 bg-brand-green text-white hover:bg-brand-green-dark hover:shadow-lg transform hover:scale-105 transition-all duration-300 border-0 font-semibold">
-                        Solicitar Cotizacion
+                        Solicitar Cotización
                       </Button>
                     </Link>
                   </div>
