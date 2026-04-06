@@ -1,8 +1,11 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { PageTransition } from "@/components/page-transition"
 import { ContactLink } from "@/components/contact-link"
+import { useLanguage } from "@/lib/language-context"
 
 // Custom SVG icons to replace lucide-react
 const ArrowLeftIcon = () => (
@@ -48,6 +51,7 @@ const ShieldIcon = () => (
 )
 
 export default function EnergiaTecnologiaPage() {
+  const { t, language } = useLanguage()
   const features = [
     "Equipos especializados: variadores, sistemas de instrumentación, sensores de fondo",
     "Válvulas de alta especificación y sistemas de bombeo avanzados",
@@ -90,7 +94,7 @@ export default function EnergiaTecnologiaPage() {
             <div className="flex items-center justify-between mb-4">
               <Link href="/" className="inline-flex items-center space-x-2 text-orange-200 hover:text-white">
                 <ArrowLeftIcon />
-                <span>Volver al inicio</span>
+                <span>{language === "es" ? "Volver al inicio" : "Back to Home"}</span>
               </Link>
             </div>
             <div className="flex items-center space-x-4">
@@ -98,9 +102,9 @@ export default function EnergiaTecnologiaPage() {
                 <ZapIcon />
               </div>
               <div>
-                <h1 className="text-4xl font-bold mb-2">Energía, tecnología y seguridad</h1>
+                <h1 className="text-4xl font-bold mb-2">{t.services.energia.title}</h1>
                 <p className="text-xl text-orange-100">
-                  Suministro y soporte técnico especializado para el sector industrial
+                  {t.services.energia.description}
                 </p>
               </div>
             </div>

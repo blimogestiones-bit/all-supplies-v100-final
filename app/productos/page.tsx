@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation"
 import { AnimatedSection } from "@/components/animated-section"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { useLanguage } from "@/lib/language-context"
 
 const productsData = [
   {
@@ -131,6 +132,7 @@ const productsData = [
 
 // ESTA FUNCIÓN CONTIENE TODO TU DISEÑO ORIGINAL
 function ProductosContent() {
+  const { t, language } = useLanguage()
   const searchParams = useSearchParams()
   const [selectedProduct, setSelectedProduct] = useState(productsData[0])
 
@@ -178,7 +180,7 @@ function ProductosContent() {
 
           <div className="md:hidden">
             <Link href="/" className="text-brand-blue-dark hover:text-brand-green-dark font-medium text-sm px-3 py-2 border border-brand-blue-dark rounded">
-              Volver al Inicio
+              {language === "es" ? "Volver al Inicio" : "Back to Home"}
             </Link>
           </div>
         </div>
@@ -191,10 +193,10 @@ function ProductosContent() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <AnimatedSection animation="fade-up" delay={100}>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 drop-shadow-2xl">
-              Catálogo de Productos
+              {t.catalog.title}
             </h1>
             <p className="text-lg text-white/90 drop-shadow-lg">
-              Soluciones especializadas para la industria
+              {t.catalog.subtitle}
             </p>
           </AnimatedSection>
         </div>
@@ -206,7 +208,7 @@ function ProductosContent() {
             <div className="lg:w-1/4">
               <div className="bg-white rounded-xl shadow-lg overflow-hidden sticky top-28">
                 <div className="bg-brand-blue-dark text-white p-4">
-                  <h2 className="font-bold text-lg tracking-wide">Productos</h2>
+                  <h2 className="font-bold text-lg tracking-wide">{language === "es" ? "Productos" : "Products"}</h2>
                 </div>
                 <nav className="divide-y divide-slate-100">
                   {productsData.map((product) => (
@@ -262,7 +264,7 @@ function ProductosContent() {
                     </h2>
                     <div>
                       <h3 className="text-xs font-bold text-brand-green uppercase tracking-widest mb-2">
-                        Descripción
+                        {t.catalog.description}
                       </h3>
                       <p className="text-text-secondary leading-relaxed text-sm">
                         {selectedProduct.description}
@@ -274,7 +276,7 @@ function ProductosContent() {
                 <div className="p-6 pt-0 border-t border-slate-100">
                   <div className="mb-6">
                     <h3 className="text-xs font-bold text-brand-green uppercase tracking-widest mb-4 pt-6">
-                      Características Técnicas
+                      {t.catalog.features}
                     </h3>
                     <div className="grid md:grid-cols-2 gap-2">
                       {selectedProduct.features.map((feature, idx) => (
@@ -292,7 +294,7 @@ function ProductosContent() {
                   {selectedProduct.video && (
                     <div className="mb-6">
                       <h3 className="text-xs font-bold text-brand-green uppercase tracking-widest mb-4">
-                        Video Demostrativo
+                        {language === "es" ? "Video Demostrativo" : "Demo Video"}
                       </h3>
                       <div className="bg-slate-900 rounded-xl overflow-hidden shadow-lg max-w-2xl">
                         <video
@@ -301,7 +303,7 @@ function ProductosContent() {
                           poster={selectedProduct.image}
                         >
                           <source src={selectedProduct.video} type="video/mp4" />
-                          Tu navegador no soporta la reproducción de videos.
+                          {t.catalog.videoNotSupported}
                         </video>
                       </div>
                     </div>
@@ -310,7 +312,7 @@ function ProductosContent() {
                   <div className="pt-4 border-t border-slate-200">
                     <Link href="/#contacto">
                       <Button className="px-6 py-3 bg-brand-green text-white hover:bg-brand-green-dark hover:shadow-lg transform hover:scale-105 transition-all duration-300 border-0 font-semibold">
-                        Solicitar Cotización
+                        {t.catalog.requestQuote}
                       </Button>
                     </Link>
                   </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 const allies = [
   { name: "Amvac Valves", category: "Válvulas Industriales", logo: "/allies/amvac-valves.jpg" },
@@ -27,6 +28,7 @@ const AUTO_SPEED = 0.6 // px per frame
 const MANUAL_JUMP = STEP * 2 // Jump 2 cards when clicking arrows
 
 export function AlliesCarousel() {
+  const { t, language } = useLanguage()
   const trackRef = useRef<HTMLDivElement>(null)
   const offsetRef = useRef(0)
   const rafRef = useRef<number | null>(null)
@@ -128,7 +130,20 @@ export function AlliesCarousel() {
                   }}
                 />
               </div>
-              <p className="text-xs font-medium text-text-secondary text-center leading-snug">{ally.category}</p>
+              <p className="text-xs font-medium text-text-secondary text-center leading-snug">
+                {language === "es" ? ally.category : 
+                  ally.name === "Amvac Valves" ? t.categories.valvulasIndustriales :
+                  ally.name === "Dobicka Inc" ? t.categories.equiposIndustriales :
+                  ally.name === "Drilling Operations & Engineering Consulting" ? t.categories.serviciosPerforacion :
+                  ally.name === "SEI Electric LLC" ? t.categories.serviciosElectricos :
+                  ally.name === "MStar Technologie" ? t.categories.tecnologiaIndustrial :
+                  ally.name === "J&R Oleo Suministros Industriales" ? t.categories.suministrosIndustriales :
+                  ally.name === "InverCapital Casa de Bolsa" ? t.categories.casaBolsa :
+                  ally.name === "Optimum Capital" ? t.categories.financiero :
+                  ally.name === "Inveraqua" ? t.categories.inversiones :
+                  ally.name === "Inprok C.A." ? t.categories.maquinariaPesada : ally.category
+                }
+              </p>
             </div>
           </div>
         ))}

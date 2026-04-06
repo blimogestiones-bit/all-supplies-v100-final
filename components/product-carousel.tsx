@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 interface CarouselProduct {
   id: string
@@ -57,6 +58,7 @@ function ProductImageSlideshow({ images, name }: { images: string[]; name: strin
 }
 
 export function ProductCarousel({ products }: ProductCarouselProps) {
+  const { t, language } = useLanguage()
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
   const [itemsToShow, setItemsToShow] = useState(4)
@@ -182,7 +184,7 @@ export function ProductCarousel({ products }: ProductCarouselProps) {
                         href={`/productos?producto=${product.id}`}
                         className="inline-block px-4 py-2 bg-brand-green text-white rounded font-semibold hover:bg-brand-green-dark transition-colors duration-300 text-center text-sm"
                       >
-                        Ver Catalogo
+                        {t.products.viewCatalog}
                       </a>
                     </div>
                   </div>
@@ -195,14 +197,14 @@ export function ProductCarousel({ products }: ProductCarouselProps) {
         <button
           onClick={handlePrev}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-brand-green hover:bg-brand-green-dark text-white p-2 rounded-r-lg transition-all duration-300 shadow-lg"
-          aria-label="Anterior producto"
+          aria-label={language === "es" ? "Anterior producto" : "Previous product"}
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={handleNext}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-brand-green hover:bg-brand-green-dark text-white p-2 rounded-l-lg transition-all duration-300 shadow-lg"
-          aria-label="Siguiente producto"
+          aria-label={language === "es" ? "Siguiente producto" : "Next product"}
         >
           <ChevronRight className="w-6 h-6" />
         </button>
@@ -220,7 +222,7 @@ export function ProductCarousel({ products }: ProductCarouselProps) {
               autoRef.current = setInterval(() => advance(1), 5000)
             }}
             className="w-2 h-2 rounded-full bg-slate-300 hover:bg-brand-green transition-colors duration-200"
-            aria-label={`Ir al producto ${i + 1}`}
+            aria-label={language === "es" ? `Ir al producto ${i + 1}` : `Go to product ${i + 1}`}
           />
         ))}
       </div>

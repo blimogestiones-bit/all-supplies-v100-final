@@ -1,8 +1,11 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { PageTransition } from "@/components/page-transition"
 import { ContactLink } from "@/components/contact-link"
+import { useLanguage } from "@/lib/language-context"
 
 // Custom SVG icons to replace lucide-react
 const ArrowLeftIcon = () => (
@@ -48,6 +51,7 @@ const ShieldIcon = () => (
 )
 
 export default function ProcuraInternacionalPage() {
+  const { t, language } = useLanguage()
   const features = [
     "Gestión de compras internacionales llave en mano",
     "Identificación y validación de proveedores confiables",
@@ -84,7 +88,7 @@ export default function ProcuraInternacionalPage() {
             <div className="flex items-center justify-between mb-4">
               <Link href="/" className="inline-flex items-center space-x-2 text-green-200 hover:text-white">
                 <ArrowLeftIcon />
-                <span>Volver al inicio</span>
+                <span>{language === "es" ? "Volver al inicio" : "Back to Home"}</span>
               </Link>
             </div>
             <div className="flex items-center space-x-4">
@@ -92,9 +96,9 @@ export default function ProcuraInternacionalPage() {
                 <ShoppingCartIcon />
               </div>
               <div>
-                <h1 className="text-4xl font-bold mb-2">Servicios de Procura Internacional</h1>
+                <h1 className="text-4xl font-bold mb-2">{t.services.procura.title}</h1>
                 <p className="text-xl text-green-100">
-                  Gestión integral de procesos de procura técnica para proyectos industriales
+                  {t.services.procura.description}
                 </p>
               </div>
             </div>
