@@ -222,9 +222,23 @@ export default function AllSuppliesWebsite() {
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={200}>
-              <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed drop-shadow-lg font-light max-w-4xl mx-auto">
-                {t.hero.subtitle} <span className="font-semibold">{t.hero.division1}</span> {language === "es" ? "y" : "and"} <span className="font-semibold">{t.hero.division2}</span>.
+              <p className="text-xl md:text-2xl text-white mb-6 leading-relaxed drop-shadow-lg font-light max-w-4xl mx-auto">
+                {t.hero.subtitle}
               </p>
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-10 max-w-4xl mx-auto">
+                <span className="px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white font-semibold text-base md:text-lg drop-shadow-lg hover:bg-white/20 transition-all">
+                  {t.hero.line1}
+                </span>
+                <span className="px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white font-semibold text-base md:text-lg drop-shadow-lg hover:bg-white/20 transition-all">
+                  {t.hero.line2}
+                </span>
+                <span className="px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white font-semibold text-base md:text-lg drop-shadow-lg hover:bg-white/20 transition-all">
+                  {t.hero.line3}
+                </span>
+                <span className="px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg text-white font-semibold text-base md:text-lg drop-shadow-lg hover:bg-white/20 transition-all">
+                  {t.hero.line4}
+                </span>
+              </div>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={300}>
