@@ -293,19 +293,19 @@ function ProductosContent() {
 
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="/#inicio" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              {t.nav.home}
+              {t.nav.inicio}
             </Link>
             <Link href="/#servicios" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              {t.nav.services}
+              {t.nav.servicios}
             </Link>
             <Link href="/#nosotros" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              {t.nav.about}
+              {t.nav.nosotros}
             </Link>
             <Link href="/#contacto" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              {t.nav.contact}
+              {t.nav.contacto}
             </Link>
             <span className="font-bold text-brand-green border-b-2 border-brand-green px-3 py-2">
-              {t.nav.products}
+              {language === "es" ? "Productos" : "Products"}
             </span>
             
             {/* Language Toggle */}
