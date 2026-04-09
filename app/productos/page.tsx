@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useLanguage } from "@/lib/language-context"
 
-const productsData = [
+const productsDataES = [
   {
     id: "valvulas",
     name: "Válvulas",
     image: "/products/valvulas.jpg",
-    description: "Sistemas de válvulas de control industrial de alta especificación para operaciones críticas. Disponibles en todo el mundo con suministro directo desde USA. Rango completo de capacidades para diferentes aplicaciones industriales.",
+    description: "Sistemas de válvulas de control industrial de alta especificación para operaciones críticas. Disponibles en todo el mundo con suministro directo desde USA.",
     features: [
       "Control de presión hasta 3000 PSI",
       "Compatible con tuberías 1/2\" a 4\"",
@@ -27,7 +27,7 @@ const productsData = [
     id: "taladros",
     name: "Taladros de Perforación",
     image: "/products/taladros.jpg",
-    description: "Equipos de perforación profesionales con capacidades desde 750HP hasta 3000HP. Suministrados directamente desde USA con especificaciones técnicas completas. Diseñados para operaciones de pozos profundos y aplicaciones demandantes en la industria.",
+    description: "Equipos de perforación profesionales con capacidades desde 750HP hasta 3000HP. Suministrados directamente desde USA con especificaciones técnicas completas.",
     features: [
       "Capacidad: 750HP a 3000HP",
       "Tecnología de última generación",
@@ -41,15 +41,14 @@ const productsData = [
     name: "Tornillería Industrial",
     image: "/products/tornilleria-esparrago.jpg",
     images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
-    description: "Componentes de fijación certificados ASTM para la industria. Tornillería de precisión con múltiples grados de aleación. Especialmente diseñada para ambientes corrosivos y altas temperaturas en aplicaciones industriales críticas.",
+    description: "Componentes de fijación certificados ASTM para la industria. Tornillería de precisión con múltiples grados de aleación.",
     features: [
       "Certificación ASTM A193, A320, A353",
       "Barras Roscadas",
       "Espárragos para altas temperaturas",
       "Múltiples grados de aleación disponibles",
       "Fabricación especial personalizada",
-      "Stock permanente de ítems estándar",
-      "Calibración verificada y certificada"
+      "Stock permanente de ítems estándar"
     ],
     video: null,
   },
@@ -57,7 +56,7 @@ const productsData = [
     id: "herramientas",
     name: "Herramientas Profesionales",
     image: "/products/herramientas.jpg",
-    description: "Herramientas de precisión de marcas reconocidas internacionalmente. Equipos eléctricos y manuales diseñados para ambientes exigentes de la industria. Durabilidad y rendimiento garantizados bajo las condiciones más difíciles.",
+    description: "Herramientas de precisión de marcas reconocidas internacionalmente. Equipos eléctricos y manuales diseñados para ambientes exigentes.",
     features: [
       "Marcas: DeWalt, Nikato, Stanley",
       "Herramientas eléctricas profesionales",
@@ -72,7 +71,7 @@ const productsData = [
     id: "revestidores",
     name: "Revestidores y Tuberías",
     image: "/products/revestidores.jpg",
-    description: "Tuberías de revestimiento de acero de alta resistencia para construcción y operación de pozos profundos. Disponibles en múltiples dimensiones. Especificaciones técnicas completas para cualquier aplicación industrial.",
+    description: "Tuberías de revestimiento de acero de alta resistencia para construcción y operación de pozos profundos. Disponibles en múltiples dimensiones.",
     features: [
       "Diámetro externo: 4 1/2\" a 13 3/8\"",
       "Espesor de pared: 0.205\" a 0.514\"",
@@ -87,7 +86,7 @@ const productsData = [
     id: "wellcomm",
     name: "Sensor WellComm",
     image: "/products/sensor-wellcomm.jpg",
-    description: "Sistema avanzado de monitoreo inteligente en tiempo real para pozos. Transmisión de datos inalámbrica remota. Análisis avanzado de parámetros operacionales críticos para la industria.",
+    description: "Sistema avanzado de monitoreo inteligente en tiempo real para pozos. Transmisión de datos inalámbrica remota.",
     features: [
       "Monitoreo en tiempo real 24/7",
       "Transmisión inalámbrica confiable",
@@ -102,7 +101,7 @@ const productsData = [
     id: "hmi",
     name: "HMI DataLogger",
     image: "/products/hmi-datalogger.jpg",
-    description: "Interface HMI profesional con registro automático de datos para sistemas industriales. Visualización en tiempo real de parámetros operacionales. Almacenamiento seguro de datos históricos con acceso remoto.",
+    description: "Interface HMI profesional con registro automático de datos para sistemas industriales. Visualización en tiempo real.",
     features: [
       "Interface gráfica intuitiva",
       "Registro automático de datos",
@@ -117,7 +116,7 @@ const productsData = [
     id: "variador",
     name: "Variadores de Frecuencia",
     image: "/products/variador.jpg",
-    description: "Convertidores de frecuencia de alto rendimiento para control de velocidad en sistemas de bombeo y producción. Optimización de eficiencia energética. Especializados para aplicaciones críticas en la industria.",
+    description: "Convertidores de frecuencia de alto rendimiento para control de velocidad en sistemas de bombeo y producción.",
     features: [
       "Control de velocidad variable",
       "Eficiencia energética optimizada",
@@ -130,11 +129,143 @@ const productsData = [
   }
 ]
 
+const productsDataEN = [
+  {
+    id: "valvulas",
+    name: "Valves",
+    image: "/products/valvulas.jpg",
+    description: "High specification industrial control valve systems for critical operations. Available worldwide with direct supply from USA.",
+    features: [
+      "Pressure control up to 3000 PSI",
+      "Compatible with 1/2\" to 4\" pipes",
+      "Certified carbon steel body",
+      "Available in permanent stock",
+      "Global distribution from USA",
+      "API 6A and ISO 14313 certification"
+    ],
+    video: null,
+  },
+  {
+    id: "taladros",
+    name: "Drilling Rigs",
+    image: "/products/taladros.jpg",
+    description: "Professional drilling equipment with capacities from 750HP to 3000HP. Supplied directly from USA with complete technical specifications.",
+    features: [
+      "Capacity: 750HP to 3000HP",
+      "State-of-the-art technology",
+      "Supply from USA",
+      "Specialized technical support"
+    ],
+    video: null,
+  },
+  {
+    id: "tornilleria",
+    name: "Industrial Fasteners",
+    image: "/products/tornilleria-esparrago.jpg",
+    images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
+    description: "ASTM certified fastening components for industry. Precision hardware with multiple alloy grades.",
+    features: [
+      "ASTM A193, A320, A353 Certification",
+      "Threaded Bars",
+      "High temperature studs",
+      "Multiple alloy grades available",
+      "Custom special manufacturing",
+      "Permanent stock of standard items"
+    ],
+    video: null,
+  },
+  {
+    id: "herramientas",
+    name: "Professional Tools",
+    image: "/products/herramientas.jpg",
+    description: "Precision tools from internationally recognized brands. Electric and manual equipment designed for demanding industrial environments.",
+    features: [
+      "Brands: DeWalt, Nikato, Stanley",
+      "Professional electric tools",
+      "Precision manual equipment",
+      "Ergonomic and robust design",
+      "Manufacturer warranty included",
+      "Available for sale and rental"
+    ],
+    video: null,
+  },
+  {
+    id: "revestidores",
+    name: "Casing and Tubing",
+    image: "/products/revestidores.jpg",
+    description: "High strength steel casing pipes for deep well construction and operation. Available in multiple dimensions.",
+    features: [
+      "External diameter: 4 1/2\" to 13 3/8\"",
+      "Wall thickness: 0.205\" to 0.514\"",
+      "Production tubing available",
+      "Rods in multiple sizes",
+      "Verified resistance certification",
+      "Available in carbon steel and alloys"
+    ],
+    video: null,
+  },
+  {
+    id: "wellcomm",
+    name: "WellComm Sensor",
+    image: "/products/sensor-wellcomm.jpg",
+    description: "Advanced intelligent real-time monitoring system for wells. Remote wireless data transmission.",
+    features: [
+      "24/7 real-time monitoring",
+      "Reliable wireless transmission",
+      "Pressure and temperature sensors",
+      "Historical data storage",
+      "Remote control panel",
+      "Automatic alerts and notifications"
+    ],
+    video: null,
+  },
+  {
+    id: "hmi",
+    name: "HMI DataLogger",
+    image: "/products/hmi-datalogger.jpg",
+    description: "Professional HMI interface with automatic data logging for industrial systems. Real-time visualization.",
+    features: [
+      "Intuitive graphical interface",
+      "Automatic data logging",
+      "Real-time storage",
+      "Secure remote access",
+      "Integrated equipment control",
+      "Automatic reports and analysis"
+    ],
+    video: null,
+  },
+  {
+    id: "variador",
+    name: "Variable Frequency Drives",
+    image: "/products/variador.jpg",
+    description: "High performance frequency converters for speed control in pumping and production systems.",
+    features: [
+      "Variable speed control",
+      "Optimized energy efficiency",
+      "Integrated equipment protection",
+      "Operational cost reduction",
+      "Robust industrial design",
+      "Compatible with multiple motors"
+    ],
+    video: "/videos/variador.mp4",
+  }
+]
+
 // ESTA FUNCIÓN CONTIENE TODO TU DISEÑO ORIGINAL
 function ProductosContent() {
-  const { t, language } = useLanguage()
+  const { t, language, setLanguage } = useLanguage()
   const searchParams = useSearchParams()
+  const productsData = language === "es" ? productsDataES : productsDataEN
   const [selectedProduct, setSelectedProduct] = useState(productsData[0])
+  
+  // Update selected product when language changes
+  useEffect(() => {
+    const currentId = selectedProduct.id
+    const newProduct = productsData.find(p => p.id === currentId)
+    if (newProduct) {
+      setSelectedProduct(newProduct)
+    }
+  }, [language, productsData, selectedProduct.id])
 
   useEffect(() => {
     const productoParam = searchParams.get("producto")
@@ -162,20 +293,40 @@ function ProductosContent() {
 
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="/#inicio" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              Inicio
+              {t.nav.home}
             </Link>
             <Link href="/#servicios" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              Servicios
+              {t.nav.services}
             </Link>
             <Link href="/#nosotros" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              Nosotros
+              {t.nav.about}
             </Link>
             <Link href="/#contacto" className="hover:text-brand-green-dark transition-colors font-medium px-3 py-2 rounded hover:bg-brand-green-50">
-              Contacto
+              {t.nav.contact}
             </Link>
             <span className="font-bold text-brand-green border-b-2 border-brand-green px-3 py-2">
-              Productos
+              {t.nav.products}
             </span>
+            
+            {/* Language Toggle */}
+            <div className="flex items-center border border-slate-300 rounded-full overflow-hidden">
+              <button
+                onClick={() => setLanguage("es")}
+                className={`px-3 py-1 text-sm font-medium transition-colors ${
+                  language === "es" ? "bg-brand-blue-dark text-white" : "bg-white text-slate-600 hover:bg-slate-100"
+                }`}
+              >
+                ES
+              </button>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-3 py-1 text-sm font-medium transition-colors ${
+                  language === "en" ? "bg-brand-blue-dark text-white" : "bg-white text-slate-600 hover:bg-slate-100"
+                }`}
+              >
+                EN
+              </button>
+            </div>
           </nav>
 
           <div className="md:hidden">

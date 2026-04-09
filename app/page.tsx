@@ -416,7 +416,7 @@ export default function AllSuppliesWebsite() {
                   <CardHeader className="bg-brand-green-dark text-white rounded-t-lg">
                     <CardTitle className="flex items-center space-x-2">
                       <MapPinIcon />
-                      <span>Nuestra Oficina</span>
+                      <span>{language === "es" ? "Nuestra Oficina" : "Our Office"}</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 bg-brand-green-50">
@@ -431,7 +431,7 @@ export default function AllSuppliesWebsite() {
                           <br />
                           PH Ocean Business Plaza - Torre Banesco
                           <br />
-                          Piso 19, Ciudad de Panamá - Panamá
+                          {language === "es" ? "Piso 19, Ciudad de Panamá - Panamá" : "Floor 19, Panama City - Panama"}
                         </p>
                         <a
                           href="https://maps.google.com/?q=Ave.+Aquilino+de+la+Guardia+y+Calle+47,+Ocean+Business+Plaza,+Panama+City"
@@ -442,13 +442,13 @@ export default function AllSuppliesWebsite() {
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                           </svg>
-                          <span>Ver en Google Maps</span>
+                          <span>{language === "es" ? "Ver en Google Maps" : "View on Google Maps"}</span>
                         </a>
                       </div>
                       <div className="pt-4 border-t border-gray-200">
                         <h4 className="font-semibold text-text-primary mb-2 flex items-center space-x-2">
                           <PhoneIcon />
-                          <span>Teléfonos</span>
+                          <span>{language === "es" ? "Teléfonos" : "Phone Numbers"}</span>
                         </h4>
                         <div className="space-y-1">
                           <p className="text-text-secondary text-sm">+(507) 6227-0820</p>
