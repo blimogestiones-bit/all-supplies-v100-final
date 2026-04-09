@@ -329,9 +329,36 @@ function ProductosContent() {
             </div>
           </nav>
 
-          <div className="md:hidden">
-            <Link href="/" className="text-brand-blue-dark hover:text-brand-green-dark font-medium text-sm px-3 py-2 border border-brand-blue-dark rounded">
-              {language === "es" ? "Volver al Inicio" : "Back to Home"}
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center gap-3">
+            {/* Language Toggle Mobile */}
+            <div className="flex items-center border border-slate-300 rounded-full overflow-hidden">
+              <button
+                onClick={() => setLanguage("es")}
+                className={`px-2 py-1 text-xs font-medium transition-colors ${
+                  language === "es" ? "bg-brand-blue-dark text-white" : "bg-white text-slate-600"
+                }`}
+              >
+                ES
+              </button>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-2 py-1 text-xs font-medium transition-colors ${
+                  language === "en" ? "bg-brand-blue-dark text-white" : "bg-white text-slate-600"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+            
+            <Link 
+              href="/" 
+              className="flex items-center gap-1 text-brand-blue-dark hover:text-brand-green-dark font-medium text-xs px-2 py-1 border border-brand-blue-dark rounded whitespace-nowrap"
+            >
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              <span>{language === "es" ? "Inicio" : "Home"}</span>
             </Link>
           </div>
         </div>

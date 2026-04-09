@@ -1,9 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import { useLanguage } from "@/lib/language-context"
 
 export function SmoothScrollNav() {
   const { language, setLanguage, t } = useLanguage()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
@@ -74,7 +76,7 @@ export function SmoothScrollNav() {
         </nav>
 
         {/* Mobile menu */}
-        <div className="md:hidden flex items-center gap-3">
+        <div className="md:hidden flex items-center gap-4">
           {/* Language Toggle Mobile */}
           <button
             onClick={toggleLanguage}
@@ -86,13 +88,67 @@ export function SmoothScrollNav() {
             <span className={`${language === "en" ? "text-brand-blue" : "text-gray-400"}`}>EN</span>
           </button>
 
-          <button className="text-brand-blue-dark hover:text-brand-green-dark focus:outline-none focus:ring-2 focus:ring-brand-green-light rounded p-2">
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-brand-blue-dark hover:text-brand-green-dark focus:outline-none focus:ring-2 focus:ring-brand-green-light rounded p-2"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? (
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
+      
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
+          <nav className="flex flex-col py-2">
+            <button
+              onClick={() => {
+                scrollToSection("inicio")
+                setMobileMenuOpen(false)
+              }}
+              className="w-full text-left px-6 py-3 hover:bg-brand-green-50 hover:text-brand-green-dark transition-colors font-medium"
+            >
+              {t.nav.inicio}
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("servicios")
+                setMobileMenuOpen(false)
+              }}
+              className="w-full text-left px-6 py-3 hover:bg-brand-green-50 hover:text-brand-green-dark transition-colors font-medium"
+            >
+              {t.nav.servicios}
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("nosotros")
+                setMobileMenuOpen(false)
+              }}
+              className="w-full text-left px-6 py-3 hover:bg-brand-green-50 hover:text-brand-green-dark transition-colors font-medium"
+            >
+              {t.nav.nosotros}
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("contacto")
+                setMobileMenuOpen(false)
+              }}
+              className="w-full text-left px-6 py-3 hover:bg-brand-green-50 hover:text-brand-green-dark transition-colors font-medium"
+            >
+              {t.nav.contacto}
+            </button>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
