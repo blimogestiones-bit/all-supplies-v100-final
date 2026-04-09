@@ -2,13 +2,14 @@
 
 import { useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 const allies = [
-  { name: "Amvac Valves", category: "Valvulas Industriales", logo: "/allies/amvac-valves.jpg" },
+  { name: "Amvac Valves", category: "Válvulas Industriales", logo: "/allies/amvac-valves.jpg" },
   { name: "Dobicka Inc", category: "Equipos Industriales", logo: "/allies/dobicka-inc.jpg", larger: true },
-  { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforacion", logo: "/allies/drilling-consulting.jpg" },
-  { name: "SEI Electric LLC", category: "Servicios Electricos", logo: "/allies/sei-electric.jpg" },
-  { name: "MStar Technologie", category: "Tecnologia Industrial", logo: "/allies/mstar-technologie.png" },
+  { name: "Drilling Operations & Engineering Consulting", category: "Servicios de Perforación", logo: "/allies/drilling-consulting.jpg" },
+  { name: "SEI Electric LLC", category: "Servicios Eléctricos", logo: "/allies/sei-electric.jpg" },
+  { name: "MStar Technologie", category: "Tecnología Industrial", logo: "/allies/mstar-technologie.png" },
   { name: "J&R Oleo Suministros Industriales", category: "Suministros Industriales", logo: "/allies/jr-oleo.png" },
   { name: "InverCapital Casa de Bolsa", category: "Casa de Bolsa", logo: "/allies/invercapital.png", larger: true },
   { name: "Optimum Capital", category: "Financiero", logo: "/allies/optimum-capital.jpg" },
@@ -27,6 +28,7 @@ const AUTO_SPEED = 0.6 // px per frame
 const MANUAL_JUMP = STEP * 2 // Jump 2 cards when clicking arrows
 
 export function AlliesCarousel() {
+  const { t, language } = useLanguage()
   const trackRef = useRef<HTMLDivElement>(null)
   const offsetRef = useRef(0)
   const rafRef = useRef<number | null>(null)
@@ -128,7 +130,20 @@ export function AlliesCarousel() {
                   }}
                 />
               </div>
-              <p className="text-xs font-medium text-text-secondary text-center leading-snug">{ally.category}</p>
+              <p className="text-xs font-medium text-text-secondary text-center leading-snug">
+                {language === "es" ? ally.category : 
+                  ally.name === "Amvac Valves" ? t.categories.valvulasIndustriales :
+                  ally.name === "Dobicka Inc" ? t.categories.equiposIndustriales :
+                  ally.name === "Drilling Operations & Engineering Consulting" ? t.categories.serviciosPerforacion :
+                  ally.name === "SEI Electric LLC" ? t.categories.serviciosElectricos :
+                  ally.name === "MStar Technologie" ? t.categories.tecnologiaIndustrial :
+                  ally.name === "J&R Oleo Suministros Industriales" ? t.categories.suministrosIndustriales :
+                  ally.name === "InverCapital Casa de Bolsa" ? t.categories.casaBolsa :
+                  ally.name === "Optimum Capital" ? t.categories.financiero :
+                  ally.name === "Inveraqua" ? t.categories.inversiones :
+                  ally.name === "Inprok C.A." ? t.categories.maquinariaPesada : ally.category
+                }
+              </p>
             </div>
           </div>
         ))}

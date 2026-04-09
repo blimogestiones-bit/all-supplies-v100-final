@@ -4,13 +4,14 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { PWAInstallPrompt } from "@/components/pwa-install-prompt"
 import { ConnectionStatus } from "@/components/connection-status"
+import { LanguageProvider } from "@/lib/language-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "All Supplies - Soluciones Estratégicas Integrales",
   description:
-    "Empresa multinacional especializada en soluciones estratégicas para Energía y Petróleo, Servicios de Procura y Gestión Financiera Internacional",
+    "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
   keywords: ["energía", "petróleo", "procura", "servicios financieros", "consultoría", "venezuela", "panamá"],
   authors: [{ name: "All Supplies" }],
   creator: "All Supplies",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "All Supplies - Soluciones Estratégicas Integrales",
     description:
-      "Empresa multinacional especializada en soluciones estratégicas para Energía y Petróleo, Servicios de Procura y Gestión Financiera Internacional",
+      "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
     url: "https://allsuppliesinv.com",
     siteName: "All Supplies",
     locale: "es_ES",
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "All Supplies - Soluciones Estratégicas Integrales",
     description:
-      "Empresa multinacional especializada en soluciones estratégicas para Energía y Petróleo, Servicios de Procura y Gestión Financiera Internacional",
+      "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
     images: ["/og-image.png"],
   },
   robots: {
@@ -102,9 +103,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={inter.className} style={{ scrollBehavior: "smooth" }}>
-        <ConnectionStatus />
-        {children}
-        <PWAInstallPrompt />
+        <LanguageProvider>
+          <ConnectionStatus />
+          {children}
+          <PWAInstallPrompt />
+        </LanguageProvider>
       </body>
     </html>
   )

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 interface CarouselProduct {
   id: string
@@ -14,11 +15,6 @@ interface CarouselProduct {
 
 interface ProductCarouselProps {
   products: CarouselProduct[]
-  itemsPerView?: {
-    mobile: number
-    tablet: number
-    desktop: number
-  }
 }
 
 function ProductImageSlideshow({ images, name }: { images: string[]; name: string }) {
@@ -61,80 +57,84 @@ function ProductImageSlideshow({ images, name }: { images: string[]; name: strin
   )
 }
 
-export function ProductCarousel({
-  products,
-  itemsPerView = { mobile: 1, tablet: 2, desktop: 4 },
-}: ProductCarouselProps) {
-  const [itemsToShow, setItemsToShow] = useState(4)
+export function ProductCarousel({ products }: ProductCarouselProps) {
+  const { t, language } = useLanguage()
+  const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-  // index into the real product list (0-based). We render clones around the list.
+  const [itemsToShow, setItemsToShow] = useState(4)
+  const [cardWidth, setCardWidth] = useState(0)
+  // Real index (can go negative or beyond length — handled on transitionEnd)
   const indexRef = useRef(0)
-  // whether transition is enabled (disabled during the instant clone-jump)
-  const [transition, setTransition] = useState(true)
   const autoRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) setItemsToShow(itemsPerView.mobile)
-      else if (window.innerWidth < 1024) setItemsToShow(itemsPerView.tablet)
-      else setItemsToShow(itemsPerView.desktop)
-    }
-    handleResize()
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [itemsPerView.mobile, itemsPerView.tablet, itemsPerView.desktop])
+  // Number of clones on each side
+  const CLONES = 4
 
-  // We prepend `itemsToShow` clones at the start and append `itemsToShow` at the end
-  // so there is always content to slide into from either direction.
-  const cloneCount = itemsToShow
-  const allItems = [
-    ...products.slice(-cloneCount),
-    ...products,
-    ...products.slice(0, cloneCount),
-  ]
-  const totalSlots = allItems.length
+  // Full list: clones-at-start + real items + clones-at-end
+  const clonesBefore = products.slice(-CLONES)
+  const clonesAfter = products.slice(0, CLONES)
+  const allItems = [...clonesBefore, ...products, ...clonesAfter]
 
-  // The visual index in allItems that corresponds to real index 0 is `cloneCount`.
-  const toVisual = (real: number) => real + cloneCount
+  // Visual index of real[0] inside allItems
+  const realStart = CLONES
 
-  const applyTranslate = useCallback(
-    (visualIdx: number, animated: boolean) => {
-      if (!trackRef.current) return
-      trackRef.current.style.transition = animated
-        ? "transform 500ms ease-in-out"
-        : "none"
-      trackRef.current.style.transform = `translateX(-${(visualIdx * 100) / itemsToShow}%)`
+  const getTranslateX = useCallback(
+    (realIdx: number) => {
+      const visualIdx = realStart + realIdx
+      return -(visualIdx * cardWidth)
     },
-    [itemsToShow]
+    [cardWidth, realStart]
   )
 
-  // Set initial position (no animation) whenever itemsToShow changes
+  const applyPosition = useCallback(
+    (realIdx: number, animated: boolean) => {
+      if (!trackRef.current || cardWidth === 0) return
+      trackRef.current.style.transition = animated ? "transform 500ms ease-in-out" : "none"
+      trackRef.current.style.transform = `translateX(${getTranslateX(realIdx)}px)`
+    },
+    [getTranslateX, cardWidth]
+  )
+
+  // Recalculate card width on resize
   useEffect(() => {
-    applyTranslate(toVisual(indexRef.current), false)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsToShow])
+    const update = () => {
+      if (!containerRef.current) return
+      const w = containerRef.current.offsetWidth
+      let items = 4
+      if (window.innerWidth < 768) items = 1
+      else if (window.innerWidth < 1024) items = 2
+      setItemsToShow(items)
+      setCardWidth(w / items)
+    }
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
+  }, [])
+
+  // Re-apply position without animation when card size changes
+  useEffect(() => {
+    if (cardWidth > 0) applyPosition(indexRef.current, false)
+  }, [cardWidth, applyPosition])
 
   const advance = useCallback(
     (dir: 1 | -1) => {
-      const next = indexRef.current + dir
-      indexRef.current = next
-      applyTranslate(toVisual(next), true)
+      indexRef.current += dir
+      applyPosition(indexRef.current, true)
     },
-    [applyTranslate, toVisual]
+    [applyPosition]
   )
 
-  // After each animated transition, if we've slid into a clone region,
-  // instantly jump to the real counterpart.
+  // After slide animation, jump to real counterpart if we hit a clone
   const handleTransitionEnd = useCallback(() => {
-    const real = indexRef.current
-    if (real < 0) {
-      indexRef.current = products.length - 1
-      applyTranslate(toVisual(products.length - 1), false)
-    } else if (real >= products.length) {
-      indexRef.current = 0
-      applyTranslate(toVisual(0), false)
+    const idx = indexRef.current
+    if (idx < 0) {
+      indexRef.current = products.length + idx
+      applyPosition(indexRef.current, false)
+    } else if (idx >= products.length) {
+      indexRef.current = idx - products.length
+      applyPosition(indexRef.current, false)
     }
-  }, [applyTranslate, products.length, toVisual])
+  }, [applyPosition, products.length])
 
   // Autoplay
   useEffect(() => {
@@ -154,15 +154,14 @@ export function ProductCarousel({
     advance(1)
   }
 
-  const itemWidth = `${100 / itemsToShow}%`
-
   return (
-    <div className="w-full">
+    <div className="w-full" ref={containerRef}>
       <div className="relative overflow-hidden">
+        {/* Track */}
         <div
           ref={trackRef}
           className="flex will-change-transform"
-          style={{ width: `${(totalSlots / itemsToShow) * 100}%` }}
+          style={{ width: `${allItems.length * (cardWidth || 0)}px` }}
           onTransitionEnd={handleTransitionEnd}
         >
           {allItems.map((product, idx) => {
@@ -173,19 +172,19 @@ export function ProductCarousel({
             return (
               <div
                 key={`${product.id}-${idx}`}
-                style={{ width: itemWidth, flexShrink: 0 }}
+                style={{ width: `${cardWidth}px`, flexShrink: 0 }}
               >
-                <div className="p-2 md:p-4">
+                <div className="p-2 md:p-3">
                   <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col">
                     <ProductImageSlideshow images={images} name={product.name} />
                     <div className="p-4 flex flex-col flex-grow">
-                      <h3 className="font-bold text-lg text-slate-900 mb-2">{product.name}</h3>
-                      <p className="text-sm text-slate-600 mb-4 flex-grow">{product.description}</p>
+                      <h3 className="font-bold text-lg text-slate-900 mb-2 leading-tight">{product.name}</h3>
+                      <p className="text-sm text-slate-600 mb-4 flex-grow leading-relaxed">{product.description}</p>
                       <a
                         href={`/productos?producto=${product.id}`}
-                        className="inline-block px-4 py-2 bg-brand-green text-white rounded font-semibold hover:bg-brand-green-dark transition-colors duration-300 text-center"
+                        className="inline-block px-4 py-2 bg-brand-green text-white rounded font-semibold hover:bg-brand-green-dark transition-colors duration-300 text-center text-sm"
                       >
-                        Ver Catalogo
+                        {t.products.viewCatalog}
                       </a>
                     </div>
                   </div>
@@ -198,17 +197,34 @@ export function ProductCarousel({
         <button
           onClick={handlePrev}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-brand-green hover:bg-brand-green-dark text-white p-2 rounded-r-lg transition-all duration-300 shadow-lg"
-          aria-label="Previous products"
+          aria-label={language === "es" ? "Anterior producto" : "Previous product"}
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={handleNext}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-brand-green hover:bg-brand-green-dark text-white p-2 rounded-l-lg transition-all duration-300 shadow-lg"
-          aria-label="Next products"
+          aria-label={language === "es" ? "Siguiente producto" : "Next product"}
         >
           <ChevronRight className="w-6 h-6" />
         </button>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-4">
+        {products.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => {
+              if (autoRef.current) clearInterval(autoRef.current)
+              indexRef.current = i
+              applyPosition(i, true)
+              autoRef.current = setInterval(() => advance(1), 5000)
+            }}
+            className="w-2 h-2 rounded-full bg-slate-300 hover:bg-brand-green transition-colors duration-200"
+            aria-label={language === "es" ? `Ir al producto ${i + 1}` : `Go to product ${i + 1}`}
+          />
+        ))}
       </div>
     </div>
   )

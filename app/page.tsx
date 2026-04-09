@@ -11,6 +11,7 @@ import { MetricsSection } from "@/components/metrics-section"
 import { SmoothScrollNav } from "@/components/smooth-scroll-nav"
 import { Button } from "@/components/ui/button"
 import { ScrollToTopLink } from "@/components/scroll-to-top-link"
+import { useLanguage } from "@/lib/language-context"
 
 // Simple SVG icons to replace lucide-react
 const ZapIcon = () => (
@@ -73,62 +74,80 @@ const ProcurementIcon = () => (
 )
 
 export default function AllSuppliesWebsite() {
-  // Datos de productos para el carrusel
+  const { t, language } = useLanguage()
+
+  // Datos de productos para el carrusel - traducidos
   const productsCarouselData = [
     {
       id: "valvulas",
-      name: "Valvulas",
-      description: "Sistemas de control industrial de alta presion y especificacion. Disponibles globalmente.",
+      name: language === "es" ? "Válvulas" : "Valves",
+      description: language === "es" 
+        ? "Sistemas de control industrial de alta presión y especificación. Disponibles globalmente."
+        : "High pressure and specification industrial control systems. Globally available.",
       image: "/products/valvulas.jpg",
       href: "/productos",
     },
     {
       id: "taladros",
-      name: "Taladros de Perforacion",
-      description: "Equipos de perforacion profesionales desde 750HP hasta 3000HP. Suministro desde USA.",
+      name: language === "es" ? "Taladros de Perforación" : "Drilling Rigs",
+      description: language === "es"
+        ? "Equipos de perforación profesionales desde 750HP hasta 3000HP. Suministro desde USA."
+        : "Professional drilling equipment from 750HP to 3000HP. Supplied from USA.",
       image: "/products/taladros.jpg",
       href: "/productos",
     },
     {
       id: "tornilleria",
-      name: "Tornilleria Industrial",
-      description: "Componentes de fijacion certificados ASTM. Multiples grados de aleacion disponibles.",
+      name: language === "es" ? "Tornillería Industrial" : "Industrial Fasteners",
+      description: language === "es"
+        ? "Componentes de fijación certificados ASTM. Múltiples grados de aleación disponibles."
+        : "ASTM certified fastening components. Multiple alloy grades available.",
       image: "/products/tornilleria-esparrago.jpg",
       images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
       href: "/productos",
     },
     {
       id: "herramientas",
-      name: "Herramientas Profesionales",
-      description: "Equipos de marcas premium: DeWalt, Nikato, Stanley. Venta y renta disponible.",
+      name: language === "es" ? "Herramientas Profesionales" : "Professional Tools",
+      description: language === "es"
+        ? "Equipos de marcas premium: DeWalt, Nikato, Stanley. Venta y renta disponible."
+        : "Premium brand equipment: DeWalt, Nikato, Stanley. Sale and rental available.",
       image: "/products/herramientas.jpg",
       href: "/productos",
     },
     {
       id: "revestidores",
-      name: "Revestidores y Tuberias",
-      description: "Tuberia de acero de alta resistencia. Diametros de 4 1/2\" a 13 3/8\" disponibles.",
+      name: language === "es" ? "Revestidores y Tuberías" : "Casing and Tubing",
+      description: language === "es"
+        ? "Tubería de acero de alta resistencia. Diámetros de 4 1/2\" a 13 3/8\" disponibles."
+        : "High strength steel tubing. Diameters from 4 1/2\" to 13 3/8\" available.",
       image: "/products/revestidores.jpg",
       href: "/productos",
     },
     {
       id: "wellcomm",
       name: "Sensor WellComm",
-      description: "Sistema de monitoreo inteligente en tiempo real. Transmision inalambrica y alertas.",
+      description: language === "es"
+        ? "Sistema de monitoreo inteligente en tiempo real. Transmisión inalámbrica y alertas."
+        : "Real-time intelligent monitoring system. Wireless transmission and alerts.",
       image: "/products/sensor-wellcomm.jpg",
       href: "/productos",
     },
     {
       id: "hmi",
       name: "HMI DataLogger",
-      description: "Interface profesional con registro automatico de datos y acceso remoto seguro.",
+      description: language === "es"
+        ? "Interface profesional con registro automático de datos y acceso remoto seguro."
+        : "Professional interface with automatic data logging and secure remote access.",
       image: "/products/hmi-datalogger.jpg",
       href: "/productos",
     },
     {
       id: "variador",
-      name: "Variadores de Frecuencia",
-      description: "Control de velocidad de alto rendimiento. Eficiencia energetica optimizada.",
+      name: language === "es" ? "Variadores de Frecuencia" : "Variable Frequency Drives",
+      description: language === "es"
+        ? "Control de velocidad de alto rendimiento. Eficiencia energética optimizada."
+        : "High performance speed control. Optimized energy efficiency.",
       image: "/products/variador.jpg",
       href: "/productos",
     },
@@ -136,8 +155,8 @@ export default function AllSuppliesWebsite() {
 
   const servicesData = [
     {
-      title: "Energía, tecnología y seguridad",
-      description: "Suministro y soporte técnico especializado para el sector industrial",
+      title: t.services.energia.title,
+      description: t.services.energia.description,
       icon: <ZapIcon />,
       color: "bg-brand-green-dark",
       borderColor: "border-t-brand-green-dark",
@@ -145,8 +164,8 @@ export default function AllSuppliesWebsite() {
       buttonColor: "bg-brand-green-dark hover:bg-brand-green",
     },
     {
-      title: "Servicios de Procura Internacional",
-      description: "Gestión integral de procesos de procura técnica para proyectos industriales",
+      title: t.services.procura.title,
+      description: t.services.procura.description,
       icon: <ProcurementIcon />,
       color: "bg-brand-blue-dark",
       borderColor: "border-t-brand-blue-dark",
@@ -197,14 +216,14 @@ export default function AllSuppliesWebsite() {
           <div className="max-w-5xl mx-auto space-y-6">
             <AnimatedSection animation="fade-up" delay={100}>
               <h2 className="text-5xl md:text-7xl font-bold text-white mb-4 drop-shadow-2xl leading-tight">
-                Soluciones Estratégicas Integrales
+                {t.hero.title}
               </h2>
               <div className="h-1 w-24 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-up" delay={200}>
               <p className="text-xl md:text-2xl text-white mb-10 leading-relaxed drop-shadow-lg font-light max-w-4xl mx-auto">
-                Empresa multinacional especializada en brindar soluciones estratégicas integrales a través de dos divisiones clave: <span className="font-semibold">Energía, tecnología y seguridad</span> y <span className="font-semibold">Servicios de Procura</span>.
+                {t.hero.subtitle} <span className="font-semibold">{t.hero.division1}</span> {language === "es" ? "y" : "and"} <span className="font-semibold">{t.hero.division2}</span>.
               </p>
             </AnimatedSection>
 
@@ -214,13 +233,13 @@ export default function AllSuppliesWebsite() {
                   onClick={() => scrollToSection("productos")}
                   className="px-8 py-4 bg-gradient-to-r from-brand-green to-brand-green-dark text-white font-bold rounded-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-lg"
                 >
-                  Ver Productos
+                  {t.hero.cta}
                 </button>
                 <button
                   onClick={() => scrollToSection("contacto")}
                   className="px-8 py-4 bg-white/20 backdrop-blur-md text-white font-bold rounded-lg border-2 border-white hover:bg-white/30 transform hover:scale-105 transition-all duration-300 text-lg"
                 >
-                  Contactar Ahora
+                  {t.hero.ctaContact}
                 </button>
               </div>
             </AnimatedSection>
@@ -240,10 +259,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Nuestros Productos</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.products.title}</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Catalogo completo de soluciones especializadas para la industria
+                {t.products.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -264,10 +283,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Servicios</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.services.title}</h2>
               <div className="w-24 h-1 bg-brand-green-dark mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Descubre nuestras tres divisiones especializadas y cómo podemos impulsar el crecimiento de tu empresa
+                {t.services.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -298,7 +317,7 @@ export default function AllSuppliesWebsite() {
                         <Button
                           className={`w-full ${service.buttonColor} text-white hover:shadow-lg transform hover:scale-105 transition-all duration-300 border-0 font-semibold`}
                         >
-                          Ver detalles completos
+                          {t.services.viewDetails}
                         </Button>
                       </ScrollToTopLink>
                     </CardContent>
@@ -320,10 +339,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Aliados Estratégicos</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.allies.title}</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-green to-brand-blue mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Red de proveedores internacionales y socios comerciales en la industria
+                {t.allies.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -337,10 +356,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Proveedores</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.suppliers.title}</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-brand-blue to-brand-blue-dark mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                Empresas de confianza que nos proveen productos y servicios de calidad
+                {t.suppliers.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -354,11 +373,10 @@ export default function AllSuppliesWebsite() {
         <div className="container mx-auto px-4">
           <AnimatedSection animation="fade-up" delay={50}>
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Contáctanos</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">{t.contact.title}</h2>
               <div className="w-24 h-1 bg-brand-green-dark mx-auto"></div>
               <p className="text-lg text-text-secondary mt-4 max-w-2xl mx-auto">
-                ¿Listo para optimizar tus operaciones? Completa el formulario y te contactaremos para una consulta
-                personalizada
+                {t.contact.subtitle}
               </p>
             </div>
           </AnimatedSection>
@@ -376,13 +394,13 @@ export default function AllSuppliesWebsite() {
                   <CardHeader className="bg-brand-blue-dark text-white rounded-t-lg">
                     <CardTitle className="flex items-center space-x-2">
                       <MailIcon />
-                      <span>Información de Contacto</span>
+                      <span>{t.contact.infoTitle}</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 bg-brand-blue-50">
                     <div className="space-y-4">
                       <div>
-                        <h4 className="font-semibold text-text-primary mb-2">Correos Electrónicos:</h4>
+                        <h4 className="font-semibold text-text-primary mb-2">{t.contact.emails}:</h4>
                         <div className="space-y-1">
                           <p className="text-text-secondary">info@allsuppliesinv.com</p>
                           <p className="text-text-secondary">allsuppliesinv@gmail.com</p>
@@ -398,7 +416,7 @@ export default function AllSuppliesWebsite() {
                   <CardHeader className="bg-brand-green-dark text-white rounded-t-lg">
                     <CardTitle className="flex items-center space-x-2">
                       <MapPinIcon />
-                      <span>Nuestra Oficina</span>
+                      <span>{language === "es" ? "Nuestra Oficina" : "Our Office"}</span>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-6 bg-brand-green-50">
@@ -413,7 +431,7 @@ export default function AllSuppliesWebsite() {
                           <br />
                           PH Ocean Business Plaza - Torre Banesco
                           <br />
-                          Piso 19, Ciudad de Panamá - Panamá
+                          {language === "es" ? "Piso 19, Ciudad de Panamá - Panamá" : "Floor 19, Panama City - Panama"}
                         </p>
                         <a
                           href="https://maps.google.com/?q=Ave.+Aquilino+de+la+Guardia+y+Calle+47,+Ocean+Business+Plaza,+Panama+City"
@@ -424,13 +442,13 @@ export default function AllSuppliesWebsite() {
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                           </svg>
-                          <span>Ver en Google Maps</span>
+                          <span>{language === "es" ? "Ver en Google Maps" : "View on Google Maps"}</span>
                         </a>
                       </div>
                       <div className="pt-4 border-t border-gray-200">
                         <h4 className="font-semibold text-text-primary mb-2 flex items-center space-x-2">
                           <PhoneIcon />
-                          <span>Teléfonos</span>
+                          <span>{language === "es" ? "Teléfonos" : "Phone Numbers"}</span>
                         </h4>
                         <div className="space-y-1">
                           <p className="text-text-secondary text-sm">+(507) 6227-0820</p>
@@ -462,11 +480,10 @@ export default function AllSuppliesWebsite() {
             {/* Información de la empresa */}
             <div className="text-center max-w-2xl">
               <p className="text-lg font-medium text-brand-blue-dark mb-2">
-                Soluciones estratégicas integrales para mercados globales
+                {t.hero.title}
               </p>
               <p className="text-text-secondary">
-                Empresa multinacional especializada en Energía, tecnología y seguridad, Servicios de Procura y Gestión Financiera
-                Internacional
+                {t.footer.description}
               </p>
             </div>
 
@@ -476,19 +493,19 @@ export default function AllSuppliesWebsite() {
                 onClick={() => scrollToSection("servicios")}
                 className="text-text-secondary hover:text-brand-green-dark transition-colors"
               >
-                Servicios
+                {t.nav.servicios}
               </button>
               <button
                 onClick={() => scrollToSection("nosotros")}
                 className="text-text-secondary hover:text-brand-green-dark transition-colors"
               >
-                Nosotros
+                {t.nav.nosotros}
               </button>
               <button
                 onClick={() => scrollToSection("contacto")}
                 className="text-text-secondary hover:text-brand-green-dark transition-colors"
               >
-                Contacto
+                {t.nav.contacto}
               </button>
             </div>
 
@@ -505,7 +522,7 @@ export default function AllSuppliesWebsite() {
             {/* Copyright */}
             <div className="border-t border-gray-200 pt-6 w-full text-center">
               <p className="text-sm text-text-muted">
-                © 2025 All Supplies & Investment Inc. Todos los derechos reservados.
+                © 2025 All Supplies & Investment Inc. {t.footer.rights}
               </p>
             </div>
           </div>
@@ -521,7 +538,7 @@ export default function AllSuppliesWebsite() {
             "@type": "Organization",
             name: "All Supplies & Investment Inc",
             description:
-              "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad, Servicios de Procura y Gestión Financiera Internacional",
+              "Empresa multinacional especializada en soluciones estratégicas para Energía, tecnología y seguridad y Servicios de Procura",
             url: "https://allsuppliesinv.com",
             logo: "https://allsuppliesinv.com/logo-all-supplies-complete.png",
             contactPoint: [

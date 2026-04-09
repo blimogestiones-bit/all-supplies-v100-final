@@ -1,8 +1,11 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { PageTransition } from "@/components/page-transition"
 import { ContactLink } from "@/components/contact-link"
+import { useLanguage } from "@/lib/language-context"
 
 // Custom SVG icons to replace lucide-react
 const ArrowLeftIcon = () => (
@@ -48,7 +51,9 @@ const ShieldIcon = () => (
 )
 
 export default function ProcuraInternacionalPage() {
-  const features = [
+  const { t, language } = useLanguage()
+  
+  const featuresES = [
     "Gestión de compras internacionales llave en mano",
     "Identificación y validación de proveedores confiables",
     "Trazabilidad completa de la cadena logística",
@@ -56,8 +61,17 @@ export default function ProcuraInternacionalPage() {
     "Cumplimiento normativo internacional",
     "Gestión de documentación y certificaciones",
   ]
+  
+  const featuresEN = [
+    "Turnkey international purchasing management",
+    "Identification and validation of reliable suppliers",
+    "Complete traceability of the logistics chain",
+    "Real-time cargo monitoring",
+    "International regulatory compliance",
+    "Documentation and certification management",
+  ]
 
-  const benefits = [
+  const benefitsES = [
     "Reducción de costos de procura hasta 25%",
     "Acceso a proveedores globales verificados",
     "Minimización de riesgos en la cadena de suministro",
@@ -65,8 +79,17 @@ export default function ProcuraInternacionalPage() {
     "Transparencia total en el proceso",
     "Cumplimiento regulatorio garantizado",
   ]
+  
+  const benefitsEN = [
+    "Procurement cost reduction up to 25%",
+    "Access to verified global suppliers",
+    "Risk minimization in the supply chain",
+    "Delivery time optimization",
+    "Total transparency in the process",
+    "Guaranteed regulatory compliance",
+  ]
 
-  const applications = [
+  const applicationsES = [
     "Sector Energético",
     "Industria de la Salud",
     "Infraestructura y Construcción",
@@ -74,6 +97,19 @@ export default function ProcuraInternacionalPage() {
     "Tecnología y Telecomunicaciones",
     "Manufactura Industrial",
   ]
+  
+  const applicationsEN = [
+    "Energy Sector",
+    "Healthcare Industry",
+    "Infrastructure and Construction",
+    "Food Industry",
+    "Technology and Telecommunications",
+    "Industrial Manufacturing",
+  ]
+  
+  const features = language === "es" ? featuresES : featuresEN
+  const benefits = language === "es" ? benefitsES : benefitsEN
+  const applications = language === "es" ? applicationsES : applicationsEN
 
   return (
     <PageTransition>
@@ -84,7 +120,7 @@ export default function ProcuraInternacionalPage() {
             <div className="flex items-center justify-between mb-4">
               <Link href="/" className="inline-flex items-center space-x-2 text-green-200 hover:text-white">
                 <ArrowLeftIcon />
-                <span>Volver al inicio</span>
+                <span>{language === "es" ? "Volver al inicio" : "Back to Home"}</span>
               </Link>
             </div>
             <div className="flex items-center space-x-4">
@@ -92,9 +128,9 @@ export default function ProcuraInternacionalPage() {
                 <ShoppingCartIcon />
               </div>
               <div>
-                <h1 className="text-4xl font-bold mb-2">Servicios de Procura Internacional</h1>
+                <h1 className="text-4xl font-bold mb-2">{t.services.procura.title}</h1>
                 <p className="text-xl text-green-100">
-                  Gestión integral de procesos de procura técnica para proyectos industriales
+                  {t.services.procura.description}
                 </p>
               </div>
             </div>
@@ -106,12 +142,11 @@ export default function ProcuraInternacionalPage() {
           <div className="max-w-4xl mx-auto mb-16">
             <Card className="border-l-4 border-l-green-500 shadow-xl bg-gradient-to-r from-white to-green-50">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Optimizando Cadenas de Suministro Globales</h2>
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  {t.services.procura.mainTitle}
+                </h2>
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Nuestra división de Procura Internacional se especializa en diseñar y ejecutar procesos de procura
-                  técnica que maximizan la eficiencia y minimizan los riesgos. Con una red global de proveedores
-                  verificados y sistemas de trazabilidad avanzados, garantizamos el cumplimiento normativo y la calidad
-                  en cada proyecto.
+                  {t.services.procura.mainDesc}
                 </p>
               </CardContent>
             </Card>
@@ -123,7 +158,7 @@ export default function ProcuraInternacionalPage() {
               <CardHeader className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <GlobeIcon />
-                  <span>Características Principales</span>
+                  <span>{t.services.procura.characteristics}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -143,7 +178,7 @@ export default function ProcuraInternacionalPage() {
               <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <TruckIcon />
-                  <span>Beneficios Clave</span>
+                  <span>{t.services.procura.benefits}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -163,9 +198,9 @@ export default function ProcuraInternacionalPage() {
           <Card className="shadow-xl border-t-4 border-t-purple-500 bg-gradient-to-br from-white to-purple-50 mb-16">
             <CardHeader className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-2 text-xl">
-                <ShieldIcon />
-                <span>Aplicaciones y Sectores</span>
-              </CardTitle>
+                  <ShieldIcon />
+                  <span>{language === "es" ? "Aplicaciones y Sectores" : "Applications and Sectors"}</span>
+                </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -186,13 +221,16 @@ export default function ProcuraInternacionalPage() {
           <div className="text-center">
             <Card className="max-w-2xl mx-auto shadow-xl bg-gradient-to-r from-green-500 to-green-600 text-white">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">¿Necesitas optimizar tu cadena de suministro?</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  {language === "es" ? "¿Necesitas optimizar tu cadena de suministro?" : "Do you need to optimize your supply chain?"}
+                </h3>
                 <p className="text-green-100 mb-6">
-                  Contáctanos para descubrir cómo podemos reducir tus costos de procura y mejorar tu eficiencia
-                  operacional.
+                  {language === "es"
+                    ? "Contáctanos para descubrir cómo podemos reducir tus costos de procura y mejorar tu eficiencia operacional."
+                    : "Contact us to discover how we can reduce your procurement costs and improve your operational efficiency."}
                 </p>
                 <ContactLink className="bg-white text-green-600 hover:bg-green-50 px-8 py-3 text-lg font-semibold rounded-md transition-colors">
-                  Solicitar Consulta
+                  {language === "es" ? "Solicitar Consulta" : "Request Consultation"}
                 </ContactLink>
               </CardContent>
             </Card>

@@ -1,14 +1,15 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 const suppliers = [
-  { name: "TCS", category: "Tecnologia y Servicios", logo: "/suppliers/tcs.png", larger: true },
+  { name: "TCS", category: "Tecnología y Servicios", logo: "/suppliers/tcs.png", larger: true },
   { name: "Tamma Group", category: "Grupo Empresarial", logo: "/suppliers/tamma-group.png" },
   { name: "TeleMedicina24", category: "Servicios de Salud", logo: "/suppliers/telemedicina24.png", larger: true },
   { name: "Globex Re", category: "Reaseguradora", logo: "/allies/globex-re.png" },
-  { name: "Inversiones Sumizara", category: "Tecnologia", logo: "/allies/inversiones-sumizara.jpg" },
+  { name: "Inversiones Sumizara", category: "Tecnología", logo: "/allies/inversiones-sumizara.jpg" },
   { name: "TradeXAuto", category: "Comercio Internacional", logo: "/allies/tradexauto.png" },
 ]
 
@@ -17,6 +18,7 @@ const GAP = 32
 const TOTAL_WIDTH = suppliers.length * (CARD_WIDTH + GAP)
 
 export function SuppliersCarousel() {
+  const { t, language } = useLanguage()
   const offsetRef = useRef(0)
   const [, forceRender] = useState(0)
   const animationRef = useRef<number>()
@@ -55,7 +57,7 @@ export function SuppliersCarousel() {
       <button
         onClick={handlePrev}
         className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-200 hover:scale-110"
-        aria-label="Anterior"
+        aria-label={language === "es" ? "Anterior" : "Previous"}
       >
         <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-brand-blue-dark" />
       </button>
@@ -64,7 +66,7 @@ export function SuppliersCarousel() {
       <button
         onClick={handleNext}
         className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white shadow-lg rounded-full p-2 md:p-3 transition-all duration-200 hover:scale-110"
-        aria-label="Siguiente"
+        aria-label={language === "es" ? "Siguiente" : "Next"}
       >
         <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-brand-blue-dark" />
       </button>
@@ -117,7 +119,16 @@ export function SuppliersCarousel() {
                   </div>
                   <div className="mt-auto">
                     <h3 className="font-bold text-base text-brand-blue-dark leading-tight mb-0.5">{supplier.name}</h3>
-                    <p className="text-text-secondary text-sm">{supplier.category}</p>
+                    <p className="text-text-secondary text-sm">
+                      {language === "es" ? supplier.category :
+                        supplier.name === "TCS" ? t.categories.tecnologiaServicios :
+                        supplier.name === "Tamma Group" ? t.categories.grupoEmpresarial :
+                        supplier.name === "TeleMedicina24" ? t.categories.serviciosSalud :
+                        supplier.name === "Globex Re" ? t.categories.reaseguradora :
+                        supplier.name === "Inversiones Sumizara" ? t.categories.tecnologia :
+                        supplier.name === "TradeXAuto" ? t.categories.comercioInternacional : supplier.category
+                      }
+                    </p>
                   </div>
                 </div>
               </div>

@@ -5,6 +5,7 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import { AnimatedSection } from "@/components/animated-section"
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer"
+import { useLanguage } from "@/lib/language-context"
 
 // Simple SVG icons to replace lucide-react
 const Building2Icon = () => (
@@ -90,33 +91,35 @@ function MetricCard({ icon, value, suffix, label, color }: MetricProps) {
 }
 
 export function MetricsSection() {
+  const { t } = useLanguage()
+
   const metrics = [
     {
       icon: <Building2Icon />,
       value: 15,
       suffix: "+",
-      label: "Empresas Satisfechas",
+      label: t.metrics.satisfied,
       color: "bg-brand-green-dark",
     },
     {
       icon: <CalendarIcon />,
       value: 8,
       suffix: "+",
-      label: "Años de Experiencia",
+      label: t.metrics.experience,
       color: "bg-brand-blue",
     },
     {
       icon: <GlobeIcon />,
       value: 20,
       suffix: "+",
-      label: "Países de Operación",
+      label: t.metrics.countries,
       color: "bg-brand-green-dark",
     },
     {
       icon: <UsersIcon />,
       value: 10,
       suffix: "+",
-      label: "Profesionales Especializados",
+      label: t.metrics.professionals,
       color: "bg-brand-blue",
     },
   ]
@@ -126,10 +129,9 @@ export function MetricsSection() {
       <div className="container mx-auto px-4">
         <AnimatedSection animation="fade-up" delay={100}>
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nuestra Trayectoria en Números</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.metrics.title}</h2>
             <p className="text-xl text-white max-w-2xl mx-auto">
-              Más de una década construyendo relaciones sólidas y entregando resultados excepcionales a nivel
-              internacional
+              {t.metrics.subtitle}
             </p>
           </div>
         </AnimatedSection>
@@ -146,8 +148,7 @@ export function MetricsSection() {
           <div className="text-center mt-16">
             <div className="bg-white/15 backdrop-blur-sm rounded-lg p-6 max-w-3xl mx-auto border border-white/30">
               <p className="text-lg text-white">
-                "Nuestro compromiso con la excelencia nos ha permitido establecer alianzas estratégicas globales y
-                mantener la confianza de nuestros clientes a lo largo de los años."
+                "{t.metrics.quote}"
               </p>
             </div>
           </div>

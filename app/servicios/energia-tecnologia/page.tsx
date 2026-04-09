@@ -1,8 +1,11 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { PageTransition } from "@/components/page-transition"
 import { ContactLink } from "@/components/contact-link"
+import { useLanguage } from "@/lib/language-context"
 
 // Custom SVG icons to replace lucide-react
 const ArrowLeftIcon = () => (
@@ -48,7 +51,9 @@ const ShieldIcon = () => (
 )
 
 export default function EnergiaTecnologiaPage() {
-  const features = [
+  const { t, language } = useLanguage()
+  
+  const featuresES = [
     "Equipos especializados: variadores, sistemas de instrumentación, sensores de fondo",
     "Válvulas de alta especificación y sistemas de bombeo avanzados",
     "Unidades de control y automatización industrial",
@@ -58,8 +63,19 @@ export default function EnergiaTecnologiaPage() {
     "Integración y operación continua de sistemas complejos",
     "Soluciones tecnológicas innovadoras para optimización de procesos",
   ]
-
-  const benefits = [
+  
+  const featuresEN = [
+    "Specialized equipment: variable drives, instrumentation systems, downhole sensors",
+    "High-spec valves and advanced pumping systems",
+    "Industrial control and automation units",
+    "Real-time monitoring and control technologies",
+    "24/7 technical support with certified equipment",
+    "Predictive maintenance and specialized technical analysis",
+    "Integration and continuous operation of complex systems",
+    "Innovative technological solutions for process optimization",
+  ]
+  
+  const benefitsES = [
     "Reducción de tiempos de inactividad operacional",
     "Mejora en la eficiencia de producción",
     "Cumplimiento de estándares internacionales de seguridad",
@@ -69,8 +85,22 @@ export default function EnergiaTecnologiaPage() {
     "Integración de sistemas inteligentes",
     "Monitoreo y control remoto de operaciones",
   ]
-
-  const applications = [
+  
+  const benefitsEN = [
+    "Reduced operational downtime",
+    "Improved production efficiency",
+    "Compliance with international safety standards",
+    "Operational cost optimization",
+    "Access to cutting-edge technology",
+    "Specialized local and international technical support",
+    "Smart systems integration",
+    "Remote monitoring and control of operations",
+  ]
+  
+  const features = language === "es" ? featuresES : featuresEN
+  const benefits = language === "es" ? benefitsES : benefitsEN
+  
+  const applicationsES = [
     "Industria Energética",
     "Manufactura y Producción",
     "Automatización Industrial",
@@ -80,6 +110,19 @@ export default function EnergiaTecnologiaPage() {
     "Plantas de Procesamiento",
     "Instalaciones Industriales",
   ]
+  
+  const applicationsEN = [
+    "Energy Industry",
+    "Manufacturing and Production",
+    "Industrial Automation",
+    "Monitoring Systems",
+    "Process Control",
+    "Critical Infrastructure",
+    "Processing Plants",
+    "Industrial Facilities",
+  ]
+  
+  const applications = language === "es" ? applicationsES : applicationsEN
 
   return (
     <PageTransition>
@@ -90,7 +133,7 @@ export default function EnergiaTecnologiaPage() {
             <div className="flex items-center justify-between mb-4">
               <Link href="/" className="inline-flex items-center space-x-2 text-orange-200 hover:text-white">
                 <ArrowLeftIcon />
-                <span>Volver al inicio</span>
+                <span>{language === "es" ? "Volver al inicio" : "Back to Home"}</span>
               </Link>
             </div>
             <div className="flex items-center space-x-4">
@@ -98,9 +141,9 @@ export default function EnergiaTecnologiaPage() {
                 <ZapIcon />
               </div>
               <div>
-                <h1 className="text-4xl font-bold mb-2">Energía, tecnología y seguridad</h1>
+                <h1 className="text-4xl font-bold mb-2">{t.services.energia.title}</h1>
                 <p className="text-xl text-orange-100">
-                  Suministro y soporte técnico especializado para el sector industrial
+                  {t.services.energia.description}
                 </p>
               </div>
             </div>
@@ -113,13 +156,10 @@ export default function EnergiaTecnologiaPage() {
             <Card className="border-l-4 border-l-orange-500 shadow-xl bg-gradient-to-r from-white to-orange-50">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-slate-900 mb-4">
-                  Liderando la Innovación Tecnológica Industrial
+                  {t.services.energia.mainTitle}
                 </h2>
                 <p className="text-lg text-slate-700 leading-relaxed">
-                  Nuestra división de Energía, tecnología y seguridad se especializa en proporcionar soluciones tecnológicas
-                  avanzadas que optimizan la eficiencia operacional en múltiples sectores industriales. Desde
-                  automatización hasta control de procesos, ofrecemos equipos certificados y soporte técnico
-                  especializado que cumplen con los más altos estándares internacionales.
+                  {t.services.energia.mainDesc}
                 </p>
               </CardContent>
             </Card>
@@ -131,7 +171,7 @@ export default function EnergiaTecnologiaPage() {
               <CardHeader className="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <WrenchIcon />
-                  <span>Características Principales</span>
+                  <span>{t.services.energia.characteristics}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -151,7 +191,7 @@ export default function EnergiaTecnologiaPage() {
               <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-lg">
                 <CardTitle className="flex items-center space-x-2 text-xl">
                   <ShieldIcon />
-                  <span>Beneficios Clave</span>
+                  <span>{t.services.energia.benefits}</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-6">
@@ -171,9 +211,9 @@ export default function EnergiaTecnologiaPage() {
           <Card className="shadow-xl border-t-4 border-t-green-500 bg-gradient-to-br from-white to-green-50 mb-16">
             <CardHeader className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-2 text-xl">
-                <GlobeIcon />
-                <span>Aplicaciones y Sectores</span>
-              </CardTitle>
+                  <GlobeIcon />
+                  <span>{language === "es" ? "Aplicaciones y Sectores" : "Applications and Sectors"}</span>
+                </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -194,13 +234,16 @@ export default function EnergiaTecnologiaPage() {
           <div className="text-center">
             <Card className="max-w-2xl mx-auto shadow-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">¿Listo para optimizar tus operaciones industriales?</h3>
+                <h3 className="text-2xl font-bold mb-4">
+                  {language === "es" ? "¿Listo para optimizar tus operaciones industriales?" : "Ready to optimize your industrial operations?"}
+                </h3>
                 <p className="text-orange-100 mb-6">
-                  Contáctanos para una consulta especializada y descubre cómo podemos impulsar la eficiencia tecnológica
-                  de tu empresa.
+                  {language === "es" 
+                    ? "Contáctanos para una consulta especializada y descubre cómo podemos impulsar la eficiencia tecnológica de tu empresa."
+                    : "Contact us for a specialized consultation and discover how we can drive the technological efficiency of your company."}
                 </p>
                 <ContactLink className="bg-white text-orange-600 hover:bg-orange-50 px-8 py-3 text-lg font-semibold rounded-md transition-colors">
-                  Solicitar Consulta
+                  {language === "es" ? "Solicitar Consulta" : "Request Consultation"}
                 </ContactLink>
               </CardContent>
             </Card>
