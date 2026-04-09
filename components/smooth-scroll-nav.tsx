@@ -27,9 +27,9 @@ export function SmoothScrollNav() {
 
   return (
     <header className="bg-white text-brand-blue-dark py-4 sticky top-0 z-50 shadow-lg border-b border-gray-200">
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between gap-8">
         {/* Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center flex-shrink-0">
           <img
             src="/logo-all-supplies-complete.png"
             alt="All Supplies & Investment Inc"
@@ -76,7 +76,7 @@ export function SmoothScrollNav() {
         </nav>
 
         {/* Mobile menu */}
-        <div className="md:hidden flex items-center gap-4 ml-auto">
+        <div className="md:hidden flex items-center gap-6">
           {/* Language Toggle Mobile */}
           <button
             onClick={toggleLanguage}

@@ -152,7 +152,7 @@ export default function ProcuraInternacionalPage() {
             </Card>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
             {/* Características */}
             <Card className="shadow-xl border-t-4 border-t-green-500 bg-gradient-to-br from-white to-green-50">
               <CardHeader className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-t-lg">
