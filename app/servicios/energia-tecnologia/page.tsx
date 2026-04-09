@@ -165,7 +165,7 @@ export default function EnergiaTecnologiaPage() {
             </Card>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-16">
             {/* Características */}
             <Card className="shadow-xl border-t-4 border-t-orange-500 bg-gradient-to-br from-white to-orange-50">
               <CardHeader className="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-t-lg">

@@ -11,7 +11,7 @@ export const translations = {
     hero: {
       title: "Soluciones Estratégicas Integrales",
       subtitle: "Empresa multinacional especializada en brindar soluciones estratégicas integrales a través de dos divisiones clave:",
-      division1: "Energía, tecnología y seguridad",
+      division1: "Energía, tecnología, seguridad",
       division2: "Servicios de Procura",
       cta: "Conocer Más",
       ctaContact: "Contáctenos",
@@ -173,7 +173,7 @@ export const translations = {
     hero: {
       title: "Comprehensive Strategic Solutions",
       subtitle: "Multinational company specialized in providing comprehensive strategic solutions through two key divisions:",
-      division1: "Energy, Technology and Security",
+      division1: "Energy, Technology, Security",
       division2: "Procurement Services",
       cta: "Learn More",
       ctaContact: "Contact Us",

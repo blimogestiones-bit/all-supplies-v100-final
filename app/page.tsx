@@ -291,7 +291,7 @@ export default function AllSuppliesWebsite() {
             </div>
           </AnimatedSection>
 
-          <div className="flex flex-col lg:flex-row gap-8 justify-center items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 justify-center">
             {servicesData.map((service, index) => (
               <AnimatedSection
                 key={index}
@@ -299,7 +299,7 @@ export default function AllSuppliesWebsite() {
                 delay={100 + index * 100}
                 disableOnMobile={false}
                 triggerOnce={false}
-                className="w-full lg:w-80 xl:w-96 shrink-0"
+                className="h-full"
               >
                 <div className="group h-full">
                   <TouchOptimizedCard borderColor={service.borderColor} className="h-full">
