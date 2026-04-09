@@ -10,11 +10,9 @@ export const translations = {
     // Hero
     hero: {
       title: "Soluciones Estratégicas Integrales",
-      subtitle: "Empresa multinacional especializada en brindar soluciones estratégicas integrales",
-      line1: "Energía",
-      line2: "Tecnología",
-      line3: "Seguridad",
-      line4: "Servicios de Procura",
+      subtitle: "Empresa multinacional especializada en brindar soluciones estratégicas integrales a través de dos divisiones clave:",
+      division1: "Energía, tecnología, seguridad",
+      division2: "Servicios de Procura",
       cta: "Conocer Más",
       ctaContact: "Contáctenos",
     },
@@ -174,11 +172,9 @@ export const translations = {
     // Hero
     hero: {
       title: "Comprehensive Strategic Solutions",
-      subtitle: "Multinational company specialized in providing comprehensive strategic solutions",
-      line1: "Energy",
-      line2: "Technology",
-      line3: "Security",
-      line4: "Procurement Services",
+      subtitle: "Multinational company specialized in providing comprehensive strategic solutions through two key divisions:",
+      division1: "Energy, Technology, Security",
+      division2: "Procurement Services",
       cta: "Learn More",
       ctaContact: "Contact Us",
     },
