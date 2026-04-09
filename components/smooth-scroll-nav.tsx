@@ -76,7 +76,7 @@ export function SmoothScrollNav() {
         </nav>
 
         {/* Mobile menu */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-4 ml-auto">
           {/* Language Toggle Mobile */}
           <button
             onClick={toggleLanguage}

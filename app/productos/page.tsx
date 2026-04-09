@@ -330,7 +330,7 @@ function ProductosContent() {
           </nav>
 
           {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-3 ml-auto">
             {/* Language Toggle Mobile */}
             <div className="flex items-center border border-slate-300 rounded-full overflow-hidden">
               <button
@@ -353,9 +353,9 @@ function ProductosContent() {
             
             <Link 
               href="/" 
-              className="flex items-center gap-1 text-brand-blue-dark hover:text-brand-green-dark font-medium text-xs px-2 py-1 border border-brand-blue-dark rounded whitespace-nowrap"
+              className="inline-flex items-center gap-1 text-brand-blue-dark hover:text-brand-green-dark font-semibold text-xs px-2 py-1.5 border border-brand-blue-dark rounded hover:border-brand-green-dark transition-colors"
             >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
               <span>{language === "es" ? "Inicio" : "Home"}</span>
