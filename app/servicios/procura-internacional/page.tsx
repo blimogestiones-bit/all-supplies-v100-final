@@ -52,7 +52,8 @@ const ShieldIcon = () => (
 
 export default function ProcuraInternacionalPage() {
   const { t, language } = useLanguage()
-  const features = [
+  
+  const featuresES = [
     "Gestión de compras internacionales llave en mano",
     "Identificación y validación de proveedores confiables",
     "Trazabilidad completa de la cadena logística",
@@ -60,8 +61,17 @@ export default function ProcuraInternacionalPage() {
     "Cumplimiento normativo internacional",
     "Gestión de documentación y certificaciones",
   ]
+  
+  const featuresEN = [
+    "Turnkey international purchasing management",
+    "Identification and validation of reliable suppliers",
+    "Complete traceability of the logistics chain",
+    "Real-time cargo monitoring",
+    "International regulatory compliance",
+    "Documentation and certification management",
+  ]
 
-  const benefits = [
+  const benefitsES = [
     "Reducción de costos de procura hasta 25%",
     "Acceso a proveedores globales verificados",
     "Minimización de riesgos en la cadena de suministro",
@@ -69,8 +79,17 @@ export default function ProcuraInternacionalPage() {
     "Transparencia total en el proceso",
     "Cumplimiento regulatorio garantizado",
   ]
+  
+  const benefitsEN = [
+    "Procurement cost reduction up to 25%",
+    "Access to verified global suppliers",
+    "Risk minimization in the supply chain",
+    "Delivery time optimization",
+    "Total transparency in the process",
+    "Guaranteed regulatory compliance",
+  ]
 
-  const applications = [
+  const applicationsES = [
     "Sector Energético",
     "Industria de la Salud",
     "Infraestructura y Construcción",
@@ -78,6 +97,19 @@ export default function ProcuraInternacionalPage() {
     "Tecnología y Telecomunicaciones",
     "Manufactura Industrial",
   ]
+  
+  const applicationsEN = [
+    "Energy Sector",
+    "Healthcare Industry",
+    "Infrastructure and Construction",
+    "Food Industry",
+    "Technology and Telecommunications",
+    "Industrial Manufacturing",
+  ]
+  
+  const features = language === "es" ? featuresES : featuresEN
+  const benefits = language === "es" ? benefitsES : benefitsEN
+  const applications = language === "es" ? applicationsES : applicationsEN
 
   return (
     <PageTransition>
@@ -166,9 +198,9 @@ export default function ProcuraInternacionalPage() {
           <Card className="shadow-xl border-t-4 border-t-purple-500 bg-gradient-to-br from-white to-purple-50 mb-16">
             <CardHeader className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-2 text-xl">
-                <ShieldIcon />
-                <span>Aplicaciones y Sectores</span>
-              </CardTitle>
+                  <ShieldIcon />
+                  <span>{language === "es" ? "Aplicaciones y Sectores" : "Applications and Sectors"}</span>
+                </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">

@@ -76,62 +76,78 @@ const ProcurementIcon = () => (
 export default function AllSuppliesWebsite() {
   const { t, language } = useLanguage()
 
-  // Datos de productos para el carrusel
+  // Datos de productos para el carrusel - traducidos
   const productsCarouselData = [
     {
       id: "valvulas",
-      name: "Válvulas",
-      description: "Sistemas de control industrial de alta presión y especificación. Disponibles globalmente.",
+      name: language === "es" ? "Válvulas" : "Valves",
+      description: language === "es" 
+        ? "Sistemas de control industrial de alta presión y especificación. Disponibles globalmente."
+        : "High pressure and specification industrial control systems. Globally available.",
       image: "/products/valvulas.jpg",
       href: "/productos",
     },
     {
       id: "taladros",
-      name: "Taladros de Perforación",
-      description: "Equipos de perforación profesionales desde 750HP hasta 3000HP. Suministro desde USA.",
+      name: language === "es" ? "Taladros de Perforación" : "Drilling Rigs",
+      description: language === "es"
+        ? "Equipos de perforación profesionales desde 750HP hasta 3000HP. Suministro desde USA."
+        : "Professional drilling equipment from 750HP to 3000HP. Supplied from USA.",
       image: "/products/taladros.jpg",
       href: "/productos",
     },
     {
       id: "tornilleria",
-      name: "Tornillería Industrial",
-      description: "Componentes de fijación certificados ASTM. Múltiples grados de aleación disponibles.",
+      name: language === "es" ? "Tornillería Industrial" : "Industrial Fasteners",
+      description: language === "es"
+        ? "Componentes de fijación certificados ASTM. Múltiples grados de aleación disponibles."
+        : "ASTM certified fastening components. Multiple alloy grades available.",
       image: "/products/tornilleria-esparrago.jpg",
       images: ["/products/tornilleria-esparrago.jpg", "/products/tornilleria-pernos.jpg"],
       href: "/productos",
     },
     {
       id: "herramientas",
-      name: "Herramientas Profesionales",
-      description: "Equipos de marcas premium: DeWalt, Nikato, Stanley. Venta y renta disponible.",
+      name: language === "es" ? "Herramientas Profesionales" : "Professional Tools",
+      description: language === "es"
+        ? "Equipos de marcas premium: DeWalt, Nikato, Stanley. Venta y renta disponible."
+        : "Premium brand equipment: DeWalt, Nikato, Stanley. Sale and rental available.",
       image: "/products/herramientas.jpg",
       href: "/productos",
     },
     {
       id: "revestidores",
-      name: "Revestidores y Tuberías",
-      description: "Tubería de acero de alta resistencia. Diámetros de 4 1/2\" a 13 3/8\" disponibles.",
+      name: language === "es" ? "Revestidores y Tuberías" : "Casing and Tubing",
+      description: language === "es"
+        ? "Tubería de acero de alta resistencia. Diámetros de 4 1/2\" a 13 3/8\" disponibles."
+        : "High strength steel tubing. Diameters from 4 1/2\" to 13 3/8\" available.",
       image: "/products/revestidores.jpg",
       href: "/productos",
     },
     {
       id: "wellcomm",
       name: "Sensor WellComm",
-      description: "Sistema de monitoreo inteligente en tiempo real. Transmisión inalámbrica y alertas.",
+      description: language === "es"
+        ? "Sistema de monitoreo inteligente en tiempo real. Transmisión inalámbrica y alertas."
+        : "Real-time intelligent monitoring system. Wireless transmission and alerts.",
       image: "/products/sensor-wellcomm.jpg",
       href: "/productos",
     },
     {
       id: "hmi",
       name: "HMI DataLogger",
-      description: "Interface profesional con registro automático de datos y acceso remoto seguro.",
+      description: language === "es"
+        ? "Interface profesional con registro automático de datos y acceso remoto seguro."
+        : "Professional interface with automatic data logging and secure remote access.",
       image: "/products/hmi-datalogger.jpg",
       href: "/productos",
     },
     {
       id: "variador",
-      name: "Variadores de Frecuencia",
-      description: "Control de velocidad de alto rendimiento. Eficiencia energética optimizada.",
+      name: language === "es" ? "Variadores de Frecuencia" : "Variable Frequency Drives",
+      description: language === "es"
+        ? "Control de velocidad de alto rendimiento. Eficiencia energética optimizada."
+        : "High performance speed control. Optimized energy efficiency.",
       image: "/products/variador.jpg",
       href: "/productos",
     },
@@ -139,8 +155,8 @@ export default function AllSuppliesWebsite() {
 
   const servicesData = [
     {
-      title: "Energía, tecnología y seguridad",
-      description: "Suministro y soporte técnico especializado para el sector industrial",
+      title: t.services.energia.title,
+      description: t.services.energia.description,
       icon: <ZapIcon />,
       color: "bg-brand-green-dark",
       borderColor: "border-t-brand-green-dark",
@@ -148,8 +164,8 @@ export default function AllSuppliesWebsite() {
       buttonColor: "bg-brand-green-dark hover:bg-brand-green",
     },
     {
-      title: "Servicios de Procura Internacional",
-      description: "Gestión integral de procesos de procura técnica para proyectos industriales",
+      title: t.services.procura.title,
+      description: t.services.procura.description,
       icon: <ProcurementIcon />,
       color: "bg-brand-blue-dark",
       borderColor: "border-t-brand-blue-dark",

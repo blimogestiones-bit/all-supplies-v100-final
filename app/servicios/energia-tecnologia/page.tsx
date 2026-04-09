@@ -52,7 +52,8 @@ const ShieldIcon = () => (
 
 export default function EnergiaTecnologiaPage() {
   const { t, language } = useLanguage()
-  const features = [
+  
+  const featuresES = [
     "Equipos especializados: variadores, sistemas de instrumentación, sensores de fondo",
     "Válvulas de alta especificación y sistemas de bombeo avanzados",
     "Unidades de control y automatización industrial",
@@ -62,8 +63,19 @@ export default function EnergiaTecnologiaPage() {
     "Integración y operación continua de sistemas complejos",
     "Soluciones tecnológicas innovadoras para optimización de procesos",
   ]
-
-  const benefits = [
+  
+  const featuresEN = [
+    "Specialized equipment: variable drives, instrumentation systems, downhole sensors",
+    "High-spec valves and advanced pumping systems",
+    "Industrial control and automation units",
+    "Real-time monitoring and control technologies",
+    "24/7 technical support with certified equipment",
+    "Predictive maintenance and specialized technical analysis",
+    "Integration and continuous operation of complex systems",
+    "Innovative technological solutions for process optimization",
+  ]
+  
+  const benefitsES = [
     "Reducción de tiempos de inactividad operacional",
     "Mejora en la eficiencia de producción",
     "Cumplimiento de estándares internacionales de seguridad",
@@ -73,8 +85,22 @@ export default function EnergiaTecnologiaPage() {
     "Integración de sistemas inteligentes",
     "Monitoreo y control remoto de operaciones",
   ]
-
-  const applications = [
+  
+  const benefitsEN = [
+    "Reduced operational downtime",
+    "Improved production efficiency",
+    "Compliance with international safety standards",
+    "Operational cost optimization",
+    "Access to cutting-edge technology",
+    "Specialized local and international technical support",
+    "Smart systems integration",
+    "Remote monitoring and control of operations",
+  ]
+  
+  const features = language === "es" ? featuresES : featuresEN
+  const benefits = language === "es" ? benefitsES : benefitsEN
+  
+  const applicationsES = [
     "Industria Energética",
     "Manufactura y Producción",
     "Automatización Industrial",
@@ -84,6 +110,19 @@ export default function EnergiaTecnologiaPage() {
     "Plantas de Procesamiento",
     "Instalaciones Industriales",
   ]
+  
+  const applicationsEN = [
+    "Energy Industry",
+    "Manufacturing and Production",
+    "Industrial Automation",
+    "Monitoring Systems",
+    "Process Control",
+    "Critical Infrastructure",
+    "Processing Plants",
+    "Industrial Facilities",
+  ]
+  
+  const applications = language === "es" ? applicationsES : applicationsEN
 
   return (
     <PageTransition>
@@ -172,9 +211,9 @@ export default function EnergiaTecnologiaPage() {
           <Card className="shadow-xl border-t-4 border-t-green-500 bg-gradient-to-br from-white to-green-50 mb-16">
             <CardHeader className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-t-lg">
               <CardTitle className="flex items-center space-x-2 text-xl">
-                <GlobeIcon />
-                <span>Aplicaciones y Sectores</span>
-              </CardTitle>
+                  <GlobeIcon />
+                  <span>{language === "es" ? "Aplicaciones y Sectores" : "Applications and Sectors"}</span>
+                </CardTitle>
             </CardHeader>
             <CardContent className="p-6">
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
